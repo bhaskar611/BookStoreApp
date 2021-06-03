@@ -1,4 +1,4 @@
-package com.example.bridgelabz.bookstore.ui;
+package com.example.bridgelabz.bookstore.ui.splashActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bridgelabz.bookstore.Authentication.LoginActivity;
-import com.example.bridgelabz.bookstore.dashBoard.DashBoardActivity;
+import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
+import com.example.bridgelabz.bookstore.ui.dashBoard.DashBoardActivity;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
 

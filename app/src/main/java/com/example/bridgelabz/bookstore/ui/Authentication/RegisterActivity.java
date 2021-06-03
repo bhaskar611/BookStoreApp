@@ -1,4 +1,4 @@
-package com.example.bridgelabz.bookstore.Authentication;
+package com.example.bridgelabz.bookstore.ui.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -131,6 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
                 File file = new File(getFilesDir(), "Users.json");
                 if (file.exists()){
                     ObjectMapper mapper = new ObjectMapper();
+
                     List<User> userList = new ArrayList<User>();
                     User user = new User(email,password,name);
                     userList.add(user);
@@ -159,7 +160,6 @@ public class RegisterActivity extends AppCompatActivity {
                     fos.close();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 }
-//                mapper.writeValue(new File(RegisterActivity.this.getFilesDir().getAbsolutePath()+"/User.json"), hashMap);  // write to file
 
 
 

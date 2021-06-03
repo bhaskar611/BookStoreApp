@@ -1,4 +1,4 @@
-package com.example.bridgelabz.bookstore.Authentication;
+package com.example.bridgelabz.bookstore.ui.Authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bridgelabz.bookstore.dashBoard.DashBoardActivity;
+import com.example.bridgelabz.bookstore.ui.dashBoard.DashBoardActivity;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.model.User;
