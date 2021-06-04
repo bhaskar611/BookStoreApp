@@ -1,9 +1,20 @@
 package com.example.bridgelabz.bookstore.model;
 
+import java.util.ArrayList;
+
 public class User {
     private String userName;
     private String email;
     private String password;
+    private ArrayList<Integer> bookID;
+
+    public ArrayList<Integer> getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(ArrayList<Integer> bookID) {
+        this.bookID = bookID;
+    }
 
     public String getUserName() {
         return userName;

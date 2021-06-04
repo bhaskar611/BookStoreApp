@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.fragments.WishListFragment;
 import com.example.bridgelabz.bookstore.fragments.bookListFragment;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
 import com.example.bridgelabz.bookstore.ui.Authentication.RegisterActivity;
@@ -17,6 +18,7 @@ import com.example.bridgelabz.bookstore.ui.Authentication.RegisterActivity;
 public class DashBoardActivity extends AppCompatActivity {
     SharedPreference sharedPreference;
     bookListFragment booklistFragment;
+    WishListFragment wishListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
         sharedPreference = new SharedPreference(this);
         booklistFragment = new bookListFragment();
+        wishListFragment = new WishListFragment();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -38,6 +41,7 @@ public class DashBoardActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.dashboard_menu, menu);
         MenuItem logout = menu.findItem(R.id.sign_out);
+        MenuItem wishList = menu.findItem(R.id.favourites);
         logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -47,6 +51,18 @@ public class DashBoardActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        wishList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        wishListFragment).commit();
+                return false;
+            }
+        });
+
+
 
         return true;
     }

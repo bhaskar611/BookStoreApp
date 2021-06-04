@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/bookImage"
+                android:id="@+id/wishList_bookImage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -25,14 +25,14 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/bookTitle"
+                app:layout_constraintEnd_toStartOf="@+id/wishList_bookTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/bookTitle"
+                android:id="@+id/wishList_bookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -42,13 +42,13 @@
                 android:ems="10"
                 android:hint="Title"
                 android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/bookAuthor"
+                app:layout_constraintBottom_toTopOf="@+id/wishList_bookAuthor"
                 app:layout_constraintEnd_toStartOf="@+id/checkbox"
-                app:layout_constraintStart_toEndOf="@+id/bookImage"
+                app:layout_constraintStart_toEndOf="@+id/wishList_bookImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/bookAuthor"
+                android:id="@+id/wishList_bookAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="136dp"
@@ -59,7 +59,7 @@
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toStartOf="@+id/checkbox"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bookTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/wishList_bookTitle" />
 
             <CheckBox
                 android:id="@+id/checkbox"

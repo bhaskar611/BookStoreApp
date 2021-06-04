@@ -4,6 +4,8 @@ public class Book {
     private String bookTitle;
     private String bookAuthor;
     private String bookImage;
+    private int bookID;
+
 
     public String getBookTitle() {
         return bookTitle;
@@ -23,6 +25,14 @@ public class Book {
 
     public void setBookImage(String bookImage) {
         this.bookImage = bookImage;
+    }
+
+    public int getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 
     public void setBookTitle(String bookTitle) {

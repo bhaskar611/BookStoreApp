@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 //import com.example.bridgelabz.bookstore.dataManager.BookListManager;
+import com.example.bridgelabz.bookstore.adapter.OnBookListener;
 import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
 import com.example.bridgelabz.bookstore.util.CallBack;
@@ -39,6 +40,7 @@ public class bookListFragment extends Fragment {
 //    private RecyclerView.LayoutManager layoutManager;
 //    BookListManager bookListManager;
     private RecyclerView recyclerView;
+    public Book_View_Fragment book_view_fragment;
 
     @Nullable
     @Override
@@ -77,7 +79,30 @@ public class bookListFragment extends Fragment {
             String data = loadJSONFromAsset();
             ObjectMapper mapper = new ObjectMapper();
             ArrayList<Book> bookArrayList = mapper.readValue(data, new TypeReference<List<Book>>(){} );
-            bookListAdapter = new BookListAdapter(bookArrayList);
+            bookListAdapter = new BookListAdapter(bookArrayList, this.getContext(), new OnBookListener() {
+                @Override
+                public void onBookClick(int position, View viewHolder) {
+                    String BookTitle = bookListAdapter.getItem(position).getBookTitle();
+                    String BookAuthor = bookListAdapter.getItem(position).getBookAuthor();
+                    String BookImage = bookListAdapter.getItem(position).getBookImage();
+                    //Put the value
+                    book_view_fragment = new Book_View_Fragment();
+                    Bundle args1 = new Bundle();
+
+                    args1.putString("BookTitle", BookTitle);
+                    args1.putString("BookAuthor",
+                            BookAuthor);
+                    args1.putString("BookImage",
+                            BookImage);
+                    book_view_fragment.setArguments(args1);
+                    book_view_fragment.setArguments(args1);
+                    book_view_fragment.setArguments(args1);
+
+
+//Inflate the fragment
+                    getParentFragmentManager().beginTransaction().add(R.id.fragment_container, book_view_fragment).commit();
+                }
+            });
             recyclerView.setAdapter(bookListAdapter);
             bookListAdapter.notifyDataSetChanged();
 
