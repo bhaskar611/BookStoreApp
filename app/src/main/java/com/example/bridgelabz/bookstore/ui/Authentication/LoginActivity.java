@@ -91,9 +91,10 @@ public class LoginActivity extends AppCompatActivity {
             }
             if (isLoggedIN){
                 Toast.makeText(LoginActivity.this, "Sign In Successfull!", Toast.LENGTH_SHORT).show();
+                sharedPreference.setLoggedIN(true);
+                sharedPreference.setPresentUserId(i);
                 startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
 
-                sharedPreference.setLoggedIN(true);
             }
             else {
                 Toast.makeText(LoginActivity.this,"Error Occurred!",Toast.LENGTH_SHORT).show();

@@ -1,19 +1,39 @@
 package com.example.bridgelabz.bookstore.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String userName;
     private String email;
     private String password;
-    private ArrayList<Integer> bookID;
 
-    public ArrayList<Integer> getBookID() {
-        return bookID;
+    public List<Integer> getCartItems() {
+        return cartItems;
     }
 
-    public void setBookID(ArrayList<Integer> bookID) {
-        this.bookID = bookID;
+    public void setCartItems(List<Integer> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    private List<Integer> favouriteItemsList;
+    private int userID;
+    private List<Integer> cartItems;
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public List<Integer> getFavouriteItemsList() {
+        return favouriteItemsList;
+    }
+
+    public void setFavouriteItemsList(List<Integer> favouriteItemsList) {
+        this.favouriteItemsList = favouriteItemsList;
     }
 
     public String getUserName() {
@@ -40,10 +60,13 @@ public class User {
         this.password = password;
     }
 
-    public User(String email,String password,String userName) {
+    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<Integer> cartItems) {
+        this.userID = userId;
         this.email = email;
         this.password = password;
         this.userName = userName;
+        this.favouriteItemsList = favouriteItemsList;
+        this.cartItems = cartItems;
     }
     public User(){
 

@@ -7,18 +7,18 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Wish_RecyclerView"
+        android:id="@+id/CartList_RecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WishList_toolbar"
-        tools:listitem="@layout/wishlist_item">
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:listitem="@layout/cart_list_item">
 
     </androidx.recyclerview.widget.RecyclerView>
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/WishList_toolbar"
+        android:id="@+id/CartList_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -27,4 +27,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="264dp"
+        android:layout_marginEnd="34dp"
+        android:text="CheckOut"
+        app:layout_constraintBottom_toTopOf="@+id/CartList_RecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CartList_toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

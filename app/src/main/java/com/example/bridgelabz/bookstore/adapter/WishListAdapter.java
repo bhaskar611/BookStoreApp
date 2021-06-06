@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class WishListAdapter extends RecyclerView.Adapter<WishList_ViewHolder> {
 
-    private ArrayList<Book_Wish_Item> book_wish_items = new ArrayList<>();
+    private ArrayList<Book> book_wish_items = new ArrayList<>();
 
-    public WishListAdapter(ArrayList<Book_Wish_Item> book_wish_items){
+    public WishListAdapter(ArrayList<Book> book_wish_items){
         this.book_wish_items = book_wish_items;
     }
     @NonNull
@@ -32,15 +32,10 @@ public class WishListAdapter extends RecyclerView.Adapter<WishList_ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull WishList_ViewHolder holder, int position) {
-        Book_Wish_Item wish_item = book_wish_items.get(position);
-        holder.bookWishTitle.setText(wish_item.getBookWishTitle());
-        holder.bookWishAuthor.setText(wish_item.getBookWishAuthor());
-//        holder.bookImage.setText(book.getBookImage());
-        String imageUri =wish_item.getBookWishImage();
-        Glide.with(holder.itemView.getContext())
-                .load(imageUri)
-                .into(holder.bookWishImage);
+        Book book = book_wish_items.get(position);
+        holder.bind(book);
     }
+
 
     @Override
     public int getItemCount() {

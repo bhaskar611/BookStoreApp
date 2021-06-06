@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/WishList_bookImage"
+                android:id="@+id/CartList_bookImage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -25,14 +25,14 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/WishList_bookTitle"
+                app:layout_constraintEnd_toStartOf="@+id/CartList_bookTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/WishList_bookTitle"
+                android:id="@+id/CartList_bookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -42,13 +42,13 @@
                 android:ems="10"
                 android:hint="Title"
                 android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/WishList_bookAuthor"
-                app:layout_constraintEnd_toStartOf="@+id/Wishcheckbox"
-                app:layout_constraintStart_toEndOf="@+id/WishList_bookImage"
+                app:layout_constraintBottom_toTopOf="@+id/CartList_bookAuthor"
+                app:layout_constraintEnd_toStartOf="@+id/cartcheckbox"
+                app:layout_constraintStart_toEndOf="@+id/CartList_bookImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/WishList_bookAuthor"
+                android:id="@+id/CartList_bookAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="136dp"
@@ -57,12 +57,12 @@
                 android:ems="10"
                 android:hint="Author"
                 android:inputType="textPersonName"
-                app:layout_constraintEnd_toStartOf="@+id/Wishcheckbox"
+                app:layout_constraintEnd_toStartOf="@+id/cartcheckbox"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/WishList_bookTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/CartList_bookTitle" />
 
             <CheckBox
-                android:id="@+id/Wishcheckbox"
+                android:id="@+id/cartcheckbox"
                 android:layout_width="44dp"
                 android:layout_height="62dp"
                 android:layout_marginEnd="5dp"
@@ -74,15 +74,15 @@
                 app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
             <TextView
-                android:id="@+id/WishList_bookPrice"
+                android:id="@+id/CartList_bookPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/Wishcheckbox"
+                app:layout_constraintEnd_toStartOf="@+id/cartcheckbox"
                 app:layout_constraintHorizontal_bias="0.224"
-                app:layout_constraintStart_toEndOf="@+id/WishList_bookImage"
-                app:layout_constraintTop_toBottomOf="@+id/WishList_bookAuthor" />
+                app:layout_constraintStart_toEndOf="@+id/CartList_bookImage"
+                app:layout_constraintTop_toBottomOf="@+id/CartList_bookAuthor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

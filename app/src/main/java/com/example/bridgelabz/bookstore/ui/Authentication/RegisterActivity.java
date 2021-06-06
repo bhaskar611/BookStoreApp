@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText emailId, passwordId;
     private Button btnSignUp;
     private TextView nameId,textViewSignIn;
+    SharedPreference sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btn_register);
         textViewSignIn = findViewById(R.id.sigin);
         nameId = findViewById(R.id.et_name);
+        sharedPreference = new SharedPreference(this);
     }
 
     private void setupClickListeners() {
@@ -120,22 +123,18 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else  if(!(email.isEmpty() && password.isEmpty())){
             try{
-
-//                Map<> hashMap=new HashMap<>();
-//
-//                hashMap.put("User_Name",name);
-//                hashMap.put("Email",email);
-//                hashMap.put("Password",password);
-//                String jsonString = hashMap.toString();
-//                jsonStr = mapper.writeValueAsString(userList);
                 File file = new File(getFilesDir(), "Users.json");
+                ObjectMapper mapper = new ObjectMapper();
+                List<User> userList = new ArrayList<User>();
+                List<Integer> favouriteItemsList = new ArrayList<>();
+                List<Integer> cartItemsList = new ArrayList<>();
+                int userId = checkRegisters();
+                sharedPreference.setRegisteredUsersCount(userId);
+                sharedPreference.setPresentUserId(userId);
+                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList);
+                userList.add(user);
                 if (file.exists()){
-                    ObjectMapper mapper = new ObjectMapper();
-
-                    List<User> userList = new ArrayList<User>();
-                    User user = new User(email,password,name);
-                    userList.add(user);
-               List<User>  userList1 = mapper.readValue(new File(getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );
+               ArrayList<User>  userList1 = mapper.readValue(new File(getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );
 
                     List<User> joined = new ArrayList<User>();
 
@@ -150,10 +149,6 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 }
                 else {
-                    ObjectMapper mapper = new ObjectMapper();
-                    List<User> userList = new ArrayList<User>();
-                    User user = new User(email,password,name);
-                    userList.add(user);
                     jsonStr = mapper.writeValueAsString(userList);
                     FileOutputStream fos = this.openFileOutput("Users.json", Context.MODE_PRIVATE);
                     fos.write(jsonStr.getBytes());
@@ -167,6 +162,11 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private int checkRegisters() {
+
+        return sharedPreference.getRegisteredUsersCount() + 1;
     }
 
 

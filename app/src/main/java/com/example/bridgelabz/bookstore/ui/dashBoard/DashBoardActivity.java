@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.fragments.CartFragment;
 import com.example.bridgelabz.bookstore.fragments.WishListFragment;
 import com.example.bridgelabz.bookstore.fragments.bookListFragment;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
@@ -19,6 +20,7 @@ public class DashBoardActivity extends AppCompatActivity {
     SharedPreference sharedPreference;
     bookListFragment booklistFragment;
     WishListFragment wishListFragment;
+    CartFragment cartFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class DashBoardActivity extends AppCompatActivity {
         sharedPreference = new SharedPreference(this);
         booklistFragment = new bookListFragment();
         wishListFragment = new WishListFragment();
+        cartFragment = new CartFragment();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -42,6 +45,7 @@ public class DashBoardActivity extends AppCompatActivity {
         inflater.inflate(R.menu.dashboard_menu, menu);
         MenuItem logout = menu.findItem(R.id.sign_out);
         MenuItem wishList = menu.findItem(R.id.favourites);
+        MenuItem cartList = menu.findItem(R.id.cart);
         logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -57,13 +61,20 @@ public class DashBoardActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        wishListFragment).commit();
+                        wishListFragment).addToBackStack(null).commit();
                 return false;
             }
         });
 
+        cartList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
 
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        cartFragment).addToBackStack(null).commit();
+                return false;
+            }
+        });
         return true;
     }
 }

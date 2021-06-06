@@ -1,6 +1,7 @@
 package com.example.bridgelabz.bookstore.fragments;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 //import com.example.bridgelabz.bookstore.dataManager.BookListManager;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
@@ -34,97 +36,69 @@ import java.util.List;
 
 public class bookListFragment extends Fragment {
 
-    private BookListAdapter bookListAdapter;
-    private static final String TAG = "FragmentBooks";
+    private BookListAdapter booksListAdapter;
+    private static final String TAG = "BooksListFragment";
     private ArrayList<Book> bookList = new ArrayList<>();
-//    private RecyclerView.LayoutManager layoutManager;
-//    BookListManager bookListManager;
     private RecyclerView recyclerView;
-    public Book_View_Fragment book_view_fragment;
+    private int spanCount;
+    Book_View_Fragment bookFragment;
+    private BookRepository bookRepository;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment_booklist, container, false);
-        final GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
+//        final GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
+        int orientation = getResources().getConfiguration().orientation;
+        bookRepository = new BookRepository(getContext());
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // In landscape
+            spanCount = 2;
+        } else {
+            // In portrait
+            spanCount = 2;
+        }
+        final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView = view.findViewById(R.id.bookList_RecyclerView);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        getBooks();
-//        bookListManager = new BookListManager(this.getContext());
-//        bookListManager.getAllBooks(new CallBack<ArrayList<Book>>() {
-//            @Override
-//            public void onSuccess(ArrayList<Book> data) {
-//                bookList = data;
-//                bookListAdapter = new BookListAdapter(bookList);
-//                recyclerView.setAdapter(bookListAdapter);
-//                bookListAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Exception exception) {
-//                Toast.makeText(getContext(), "failed to load Books!", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        initRecyclerView();
+
         return view;
-
     }
 
-    private void getBooks() {
+    private void initRecyclerView() {
 
-        try {
-            String data = loadJSONFromAsset();
-            ObjectMapper mapper = new ObjectMapper();
-            ArrayList<Book> bookArrayList = mapper.readValue(data, new TypeReference<List<Book>>(){} );
-            bookListAdapter = new BookListAdapter(bookArrayList, this.getContext(), new OnBookListener() {
-                @Override
-                public void onBookClick(int position, View viewHolder) {
-                    String BookTitle = bookListAdapter.getItem(position).getBookTitle();
-                    String BookAuthor = bookListAdapter.getItem(position).getBookAuthor();
-                    String BookImage = bookListAdapter.getItem(position).getBookImage();
-                    //Put the value
-                    book_view_fragment = new Book_View_Fragment();
-                    Bundle args1 = new Bundle();
+        ArrayList<Book> bookArrayList = bookRepository.getBookList();
+        booksListAdapter = new BookListAdapter(bookArrayList, new OnBookListener() {
+            @Override
+            public void onBookClick(int position, View viewHolder) {
+                int bookId = booksListAdapter.getItem(position).getBookID();
+                String bookTitle = booksListAdapter.getItem(position).getBookTitle();
+                String bookAuthor = booksListAdapter.getItem(position).getBookAuthor();
+                String bookImage = booksListAdapter.getItem(position).getBookImage();
+                float bookPrice = booksListAdapter.getItem(position).getBookPrice();
 
-                    args1.putString("BookTitle", BookTitle);
-                    args1.putString("BookAuthor",
-                            BookAuthor);
-                    args1.putString("BookImage",
-                            BookImage);
-                    book_view_fragment.setArguments(args1);
-                    book_view_fragment.setArguments(args1);
-                    book_view_fragment.setArguments(args1);
+                bookFragment = new Book_View_Fragment();
+                Bundle bundle = new Bundle();
+
+                bundle.putInt("BookID", bookId);
+                bundle.putString("BookTitle",bookTitle);
+                bundle.putString("BookAuthor",bookAuthor);
+                bundle.putString("BookAuthor",bookImage);
+                bundle.putFloat("BookPrice",bookPrice);
 
 
-//Inflate the fragment
-                    getParentFragmentManager().beginTransaction().add(R.id.fragment_container, book_view_fragment).commit();
-                }
-            });
-            recyclerView.setAdapter(bookListAdapter);
-            bookListAdapter.notifyDataSetChanged();
+                bookFragment.setArguments(bundle);
 
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, bookFragment)
+                        .addToBackStack(null).commit();
+            }
+        });
+        recyclerView.setAdapter(booksListAdapter);
+        booksListAdapter.notifyDataSetChanged();
     }
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getActivity().getAssets().open("Books.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        Log.e(TAG, "loadJSONFromAsset: " + json );
-        return json;
-    }
+
 }

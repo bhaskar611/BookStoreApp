@@ -3,24 +3,32 @@
     "bookID": 1,
     "bookTitle":"THE GUIDE",
     "bookAuthor":"R.k Narayan",
-    "bookImage":"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1494428973l/43641._SY475_.jpg"
+    "description": "good book",
+    "bookImage":"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1494428973l/43641._SY475_.jpg",
+    "bookPrice" : 220.9
   },
   {
     "bookID": 2,
     "bookTitle":"WINGS OF FIRE",
     "bookAuthor":"APJ Abdul Kalam",
-    "bookImage":"https://upload.wikimedia.org/wikipedia/en/3/3a/Wings_of_Fire_by_A_P_J_Abdul_Kalam_Book_Cover.jpg"
+    "description": "good book",
+    "bookImage":"https://upload.wikimedia.org/wikipedia/en/3/3a/Wings_of_Fire_by_A_P_J_Abdul_Kalam_Book_Cover.jpg",
+    "bookPrice" : 250.0
   },
   {
     "bookID": 3,
     "bookTitle":"A PASSAGE TO INDIA",
     "bookAuthor":"E.M FORESTER",
-    "bookImage":"https://upload.wikimedia.org/wikipedia/en/thumb/5/54/APassageToIndia.jpg/330px-APassageToIndia.jpg"
+    "description": "good book",
+    "bookImage":"https://upload.wikimedia.org/wikipedia/en/thumb/5/54/APassageToIndia.jpg/330px-APassageToIndia.jpg",
+    "bookPrice" : 690.0
   },
   {
     "bookID": 4,
     "bookTitle":"THE HUNGRY TIDE",
     "bookAuthor":"Amitav Ghosh",
-    "bookImage":"https://upload.wikimedia.org/wikipedia/en/8/8e/The_Hungry_Tide.jpg"
+    "description": "good book",
+    "bookImage":"https://upload.wikimedia.org/wikipedia/en/8/8e/The_Hungry_Tide.jpg",
+    "bookPrice" : 1120.0
   }
 ]
