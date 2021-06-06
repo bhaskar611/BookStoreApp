@@ -1,5 +1,7 @@
 package com.example.bridgelabz.bookstore.model;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,15 @@ public class User {
     private List<Integer> favouriteItemsList;
     private int userID;
     private List<Integer> cartItems;
+    private List<Address> userAddress;
+
+    public List<Address> getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(List<Address> userAddress) {
+        this.userAddress = userAddress;
+    }
 
     public int getUserID() {
         return userID;
@@ -60,13 +71,14 @@ public class User {
         this.password = password;
     }
 
-    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<Integer> cartItems) {
+    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<Integer> cartItems,List<Address> userAddress) {
         this.userID = userId;
         this.email = email;
         this.password = password;
         this.userName = userName;
         this.favouriteItemsList = favouriteItemsList;
         this.cartItems = cartItems;
+        this.userAddress = userAddress;
     }
     public User(){
 

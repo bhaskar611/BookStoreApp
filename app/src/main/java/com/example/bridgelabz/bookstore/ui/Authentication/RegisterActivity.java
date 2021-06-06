@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -128,10 +129,11 @@ public class RegisterActivity extends AppCompatActivity {
                 List<User> userList = new ArrayList<User>();
                 List<Integer> favouriteItemsList = new ArrayList<>();
                 List<Integer> cartItemsList = new ArrayList<>();
+                List<Address> addressList = new ArrayList<>();
                 int userId = checkRegisters();
                 sharedPreference.setRegisteredUsersCount(userId);
                 sharedPreference.setPresentUserId(userId);
-                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList);
+                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList);
                 userList.add(user);
                 if (file.exists()){
                ArrayList<User>  userList1 = mapper.readValue(new File(getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );

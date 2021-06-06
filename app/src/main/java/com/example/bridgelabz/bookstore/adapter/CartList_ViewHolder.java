@@ -12,8 +12,10 @@ import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.model.Book;
 
 public class CartList_ViewHolder extends RecyclerView.ViewHolder {
-    TextView bookCartTitle, bookCartAuthor, bookCartPrice;
-    ImageView bookCartImage;
+    TextView bookCartTitle, bookCartAuthor, bookCartPrice,itemCount;
+    ImageView bookCartImage,addBook,removeBook;
+    int ItemCount = 0;
+    float bookPrice;
 
 
     public CartList_ViewHolder(@NonNull View itemView) {
@@ -22,6 +24,9 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         bookCartAuthor = itemView.findViewById(R.id.CartList_bookAuthor);
         bookCartImage = itemView.findViewById(R.id.CartList_bookImage);
         bookCartPrice =itemView.findViewById(R.id.CartList_bookPrice);
+        itemCount = itemView.findViewById(R.id.textView3);
+        addBook = itemView.findViewById(R.id.imageView);
+        removeBook = itemView.findViewById(R.id.imageView2);
 
     }
     public void bind(Book book) {
@@ -32,5 +37,24 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         Glide.with(itemView.getContext())
                 .load(imageUri)
                 .into(bookCartImage);
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ItemCount = ItemCount + 1;
+                itemCount.setText(String.valueOf(ItemCount));
+                bookPrice = book.getBookPrice() * ItemCount;
+                bookCartPrice.setText(String.valueOf(bookPrice));
+            }
+        });
+
+        removeBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ItemCount = ItemCount - 1;
+                itemCount.setText(String.valueOf(ItemCount));
+                bookPrice = book.getBookPrice() * ItemCount;
+                bookCartPrice.setText(String.valueOf(bookPrice));
+            }
+        });
     }
 }

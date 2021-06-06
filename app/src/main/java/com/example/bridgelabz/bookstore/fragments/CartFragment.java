@@ -13,16 +13,25 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 import com.example.bridgelabz.bookstore.adapter.CartListAdapter;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
+import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.Book;
+import com.example.bridgelabz.bookstore.model.User;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -46,6 +55,8 @@ public class CartFragment extends Fragment {
     private RecyclerView cart_recyclerView;
     private int spanCount;
     private BookRepository bookRepository;
+    Button checkOut;
+    SharedPreference sharedPreference;
 
     @Nullable
     @Override
@@ -54,6 +65,7 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         bookRepository = new BookRepository(getContext());
         ArrayList<Book> cartItemBooks = bookRepository.getCartItemBooks();
+        sharedPreference = new SharedPreference(this.getContext());
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
@@ -70,7 +82,32 @@ public class CartFragment extends Fragment {
         cart_recyclerView.setAdapter(cartListAdapter);
         cartListAdapter.notifyDataSetChanged();
         onBackPressed(view);
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkOutCart();
+            }
+        });
         return view;
+    }
+
+    private void checkOutCart() {
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<User> userList1 = null;
+        try {
+            userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<Address> userAddress = userList1.get(sharedPreference.getPresentUserId()).getUserAddress();
+        if(userAddress.size() == 0){
+            
+
+        }else{
+
+        }
     }
 
     private void onBackPressed(View view) {

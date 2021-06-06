@@ -86,7 +86,7 @@ public class bookListFragment extends Fragment {
                 bundle.putInt("BookID", bookId);
                 bundle.putString("BookTitle",bookTitle);
                 bundle.putString("BookAuthor",bookAuthor);
-                bundle.putString("BookAuthor",bookImage);
+                bundle.putString("BookImage",bookImage);
                 bundle.putFloat("BookPrice",bookPrice);
 
 
