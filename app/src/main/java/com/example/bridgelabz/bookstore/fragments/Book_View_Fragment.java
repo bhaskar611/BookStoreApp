@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +36,7 @@ public class Book_View_Fragment extends Fragment {
 
 
     ImageView bookImage;
-    Button add_To_Cart;
+    CheckBox add_To_Cart;
     TextView bookTitle, bookAuthor, bookPrice;
     ArrayList<Cart_Item> cart_items = new ArrayList<>();
     SharedPreference sharedPreference;
@@ -58,17 +60,19 @@ public class Book_View_Fragment extends Fragment {
         bookTitle = view.findViewById(R.id.BookView_Title);
         bookAuthor = view.findViewById(R.id.BookView_Author);
         bookPrice = view.findViewById(R.id.BookView_Price);
-        add_To_Cart = view.findViewById(R.id.Add_To_Cart);
+        add_To_Cart = view.findViewById(R.id.add_to_cart_checkBox);
         sharedPreference = new SharedPreference(this.getContext());
 
-        add_To_Cart.setOnClickListener(new View.OnClickListener() {
+        add_To_Cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                getCartItems(BookId);
-                add_To_Cart.setEnabled(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    getCartItems(BookId);
+                }else{
+                    removeCartItems(BookId);
+                }
             }
         });
-
         bookTitle.setText(BookTitle);
         bookAuthor.setText(BookAuthor);
         bookPrice.setText(String.valueOf(BookPrice));
@@ -78,8 +82,24 @@ public class Book_View_Fragment extends Fragment {
         return view;
     }
 
+    private void removeCartItems(int bookID) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>(){});
+            List<Integer> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItems();
+            cartItems.remove(Integer.valueOf(bookID));
+            userList1.get(sharedPreference.getPresentUserId()).setCartItems(cartItems);
+            String updatedFile = mapper.writeValueAsString(userList1);
+            FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
+            fos.write(updatedFile.getBytes());
+            fos.close();
 
+        } catch (IOException e){
+            e.printStackTrace();
+        }
 
+    }
     private void onBackPressed(View view) {
 
        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -93,8 +113,6 @@ public class Book_View_Fragment extends Fragment {
 
             }
             });
-
-
     }
 
     public void onResume() {
@@ -108,12 +126,6 @@ public class Book_View_Fragment extends Fragment {
     }
 
     public void getCartItems(int bookID){
-//            String BookTitle = getArguments().getString("BookTitle");
-//            String BookAuthor = getArguments().getString("BookAuthor");
-//            String BookImage = getArguments().getString("BookImage");
-//            float BookPrice = getArguments().getFloat("BookPrice");
-//            Cart_Item cart_item = new Cart_Item(BookTitle,BookAuthor,BookImage,BookPrice);
-//            cart_items.add(cart_item);
         ObjectMapper mapper = new ObjectMapper();
         try {
                 List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
@@ -129,7 +141,6 @@ public class Book_View_Fragment extends Fragment {
         } catch (IOException e){
                     e.printStackTrace();
 }
-
     }
 }
 

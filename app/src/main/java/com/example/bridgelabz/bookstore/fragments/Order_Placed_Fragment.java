@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.bridgelabz.bookstore.R;
 
@@ -20,7 +21,7 @@ import java.util.Objects;
 
 public class Order_Placed_Fragment extends Fragment {
 
-    EditText orderPlaced;
+    TextView orderPlaced;
     Button cont_Shopping;
 
 
@@ -33,7 +34,7 @@ public class Order_Placed_Fragment extends Fragment {
         cont_Shopping = view.findViewById(R.id.button2);
         //orderid + date + time
         long orderNo = System.currentTimeMillis();
-        orderPlaced.setText((int) orderNo);
+        orderPlaced.setText(String.valueOf(orderNo) );
         cont_Shopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

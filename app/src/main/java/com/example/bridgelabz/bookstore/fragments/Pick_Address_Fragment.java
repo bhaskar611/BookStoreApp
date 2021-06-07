@@ -48,7 +48,7 @@ public class Pick_Address_Fragment extends Fragment {
             spanCount = 2;
         } else {
             // In portrait
-            spanCount = 2;
+            spanCount = 1;
         }
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         sharedPreference = new SharedPreference(this.getContext());
@@ -84,12 +84,12 @@ public class Pick_Address_Fragment extends Fragment {
         recyclerView.setAdapter(address_pick_adapter);
         address_pick_adapter.notifyDataSetChanged();
         onBackPressed(view);
-        return view;
+            return view;
     }
     private void onBackPressed(View view) {
 
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.CartList_toolbar);
-        toolbar.setTitle("Cart List");
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.Address_Pick_ToolBar);
+        toolbar.setTitle("Pick Address");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

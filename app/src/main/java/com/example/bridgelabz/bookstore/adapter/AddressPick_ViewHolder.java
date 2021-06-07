@@ -1,5 +1,6 @@
 package com.example.bridgelabz.bookstore.adapter;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ public class AddressPick_ViewHolder extends RecyclerView.ViewHolder implements V
 
     TextView mobile,houseNO,Street,City,State,pin;
     private OnAddressListener onAddressListener;
+    private static final String TAG = "AddressPick_ViewHolder";
 
     public AddressPick_ViewHolder(@NonNull View itemView,OnAddressListener onAddressListener) {
         super(itemView);
@@ -28,6 +30,7 @@ public class AddressPick_ViewHolder extends RecyclerView.ViewHolder implements V
     }
     public void bind(Address address) {
         mobile.setText(address.getMobile());
+        Log.e(TAG, "bind: " + mobile );
         houseNO.setText(address.getHouseNo());
         Street.setText(address.getStreet());
         City.setText(address.getCity());

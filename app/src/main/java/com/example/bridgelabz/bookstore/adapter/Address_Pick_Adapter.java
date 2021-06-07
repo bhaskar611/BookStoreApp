@@ -1,5 +1,6 @@
 package com.example.bridgelabz.bookstore.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class Address_Pick_Adapter extends RecyclerView.Adapter<AddressPick_ViewH
 
     private List<Address> addressArrayList = new ArrayList<>();
     private OnAddressListener onAddressListener;
+    private static final String TAG = "Address_Pick_Adapter";
     public Address_Pick_Adapter(List<Address> addressArrayList,OnAddressListener onAddressListener) {
 
         this.addressArrayList = addressArrayList;
@@ -36,11 +38,12 @@ public class Address_Pick_Adapter extends RecyclerView.Adapter<AddressPick_ViewH
     @Override
     public void onBindViewHolder(@NonNull AddressPick_ViewHolder holder, int position) {
         Address address = addressArrayList.get(position);
+        Log.e(TAG, "onBindViewHolder: " + address );
         holder.bind(address);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return addressArrayList.size();
     }
 }

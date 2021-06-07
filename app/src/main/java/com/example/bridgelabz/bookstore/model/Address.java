@@ -9,6 +9,8 @@ public class Address {
     private String State;
     private String Pincode;
 
+    public Address(){}
+
     public Address(long AddressID, String mobile, String HouseNo, String Street, String city, String State, String Pincode) {
        this.AddressID = AddressID;
         this.mobile = mobile;

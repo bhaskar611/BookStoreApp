@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.Pick_Address_Fragment">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/Address_Pick_ToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

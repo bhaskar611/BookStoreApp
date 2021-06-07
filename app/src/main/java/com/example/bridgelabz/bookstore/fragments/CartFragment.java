@@ -65,6 +65,7 @@ public class CartFragment extends Fragment {
         }
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         cart_recyclerView = view.findViewById(R.id.CartList_RecyclerView);
+        checkOut = view.findViewById(R.id.button);
         cart_recyclerView.setLayoutManager(layoutManager);
         cart_recyclerView.setHasFixedSize(true);
         cartListAdapter = new CartListAdapter(cartItemBooks);
