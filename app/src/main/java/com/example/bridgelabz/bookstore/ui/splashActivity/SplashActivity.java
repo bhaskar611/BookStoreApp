@@ -12,6 +12,8 @@ import com.example.bridgelabz.bookstore.ui.dashBoard.DashBoardActivity;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
 
+import java.util.Objects;
+
 public class SplashActivity extends AppCompatActivity {
 
     private boolean isLoggedIn;
@@ -23,8 +25,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         sharedPreference = new SharedPreference(this);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams
-                .FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
 
         new Handler().postDelayed(() -> {
 

@@ -36,7 +36,7 @@ public class Book_View_Fragment extends Fragment {
 
 
     ImageView bookImage;
-    CheckBox add_To_Cart;
+    Button add_To_Cart;
     TextView bookTitle, bookAuthor, bookPrice;
     ArrayList<Cart_Item> cart_items = new ArrayList<>();
     SharedPreference sharedPreference;
@@ -60,17 +60,14 @@ public class Book_View_Fragment extends Fragment {
         bookTitle = view.findViewById(R.id.BookView_Title);
         bookAuthor = view.findViewById(R.id.BookView_Author);
         bookPrice = view.findViewById(R.id.BookView_Price);
-        add_To_Cart = view.findViewById(R.id.add_to_cart_checkBox);
+        add_To_Cart = view.findViewById(R.id.Add_To_Cart);
         sharedPreference = new SharedPreference(this.getContext());
 
-        add_To_Cart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        add_To_Cart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    getCartItems(BookId);
-                }else{
-                    removeCartItems(BookId);
-                }
+            public void onClick(View v) {
+                getCartItems(BookId);
+                add_To_Cart.setEnabled(false);
             }
         });
         bookTitle.setText(BookTitle);
@@ -82,24 +79,24 @@ public class Book_View_Fragment extends Fragment {
         return view;
     }
 
-    private void removeCartItems(int bookID) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
-                    "Users.json"), new TypeReference<List<User>>(){});
-            List<Integer> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItems();
-            cartItems.remove(Integer.valueOf(bookID));
-            userList1.get(sharedPreference.getPresentUserId()).setCartItems(cartItems);
-            String updatedFile = mapper.writeValueAsString(userList1);
-            FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
-            fos.write(updatedFile.getBytes());
-            fos.close();
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
+//    private void removeCartItems(int bookID) {
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+//                    "Users.json"), new TypeReference<List<User>>(){});
+//            List<Integer> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItems();
+//            cartItems.remove(Integer.valueOf(bookID));
+//            userList1.get(sharedPreference.getPresentUserId()).setCartItems(cartItems);
+//            String updatedFile = mapper.writeValueAsString(userList1);
+//            FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
+//            fos.write(updatedFile.getBytes());
+//            fos.close();
+//
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
+//
+//    }
     private void onBackPressed(View view) {
 
        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);

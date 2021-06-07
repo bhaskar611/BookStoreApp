@@ -90,7 +90,7 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
                 }
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Fragment myFragment = new CartFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
 
 
             }
