@@ -1,6 +1,6 @@
 package com.example.bridgelabz.bookstore.model;
 
-public class    Book {
+public class Book {
     private String bookTitle;
     private String bookAuthor;
     private String bookImage;

@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -36,19 +38,6 @@ import java.util.Objects;
 
 
 public class CartFragment extends Fragment {
-
-
-//
-//    Book_View_Fragment book_view_fragment;
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        book_view_fragment = new Book_View_Fragment();
-//        book_view_fragment.getCartItems();
-//        return inflater.inflate(R.layout.fragment_cart, container, false);
-//    }
 
     private CartListAdapter cartListAdapter;
     private static final String TAG = "FavouriteFragment";
@@ -103,10 +92,19 @@ public class CartFragment extends Fragment {
         }
         List<Address> userAddress = userList1.get(sharedPreference.getPresentUserId()).getUserAddress();
         if(userAddress.size() == 0){
-            
-
+            Fragment fragment = new AddressFragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }else{
-
+            Fragment fragment = new Pick_Address_Fragment();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 
