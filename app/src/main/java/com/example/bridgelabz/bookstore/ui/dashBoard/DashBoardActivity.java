@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.fragments.CartFragment;
 import com.example.bridgelabz.bookstore.fragments.WishListFragment;
@@ -21,6 +22,7 @@ public class DashBoardActivity extends AppCompatActivity {
     bookListFragment booklistFragment;
     WishListFragment wishListFragment;
     CartFragment cartFragment;
+    CartRepository cartRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class DashBoardActivity extends AppCompatActivity {
         booklistFragment = new bookListFragment();
         wishListFragment = new WishListFragment();
         cartFragment = new CartFragment();
+        cartRepository = new CartRepository(this);
+
+        int badges = cartRepository.getCartList().size();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -9,14 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.model.Book;
+import com.example.bridgelabz.bookstore.model.CartModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartList_ViewHolder> {
 
-    private ArrayList<Book> book_cart_items = new ArrayList<>();
+    private List<CartModel> book_cart_items = new ArrayList<>();
 
-    public CartListAdapter(ArrayList<Book> book_cart_items) {
+    public CartListAdapter(List<CartModel> book_cart_items) {
         this.book_cart_items = book_cart_items;
     }
 
@@ -31,8 +33,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartList_ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartList_ViewHolder holder, int position) {
-        Book book = book_cart_items.get(position);
-        holder.bind(book);
+        CartModel cartModel = book_cart_items.get(position);
+        holder.bind(cartModel);
     }
 
 

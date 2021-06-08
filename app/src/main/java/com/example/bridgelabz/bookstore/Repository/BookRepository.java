@@ -7,11 +7,13 @@ import android.util.Log;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.BookResponseModel;
+import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -67,37 +69,42 @@ public class BookRepository {
         return bookList;
     }
 
-    public ArrayList<Book> getCartItemList() {
-        ArrayList<Book> bookList = new ArrayList<>();
-        String data = loadBookJSON();
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayList<BookResponseModel> bookResponseModels = null;
-        try {
-            bookResponseModels = mapper.readValue(data, new TypeReference<List<BookResponseModel>>() {
-            });
-            User user = getLoggedInUser();
-            List<Integer> cartBookIds = user.getCartItems();
-            for (BookResponseModel bookResponseModel : bookResponseModels) {
-                Book cartBook = new Book(bookResponseModel);
-                cartBook.setCarted(cartBookIds.contains(bookResponseModel.getBookID()));
-                bookList.add(cartBook);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bookList;
-    }
+//    public ArrayList<Book> getCartItemList() {
+//        ArrayList<Book> bookList = new ArrayList<>();
+//        String data = loadBookJSON();
+//        ObjectMapper mapper = new ObjectMapper();
+//        ArrayList<BookResponseModel> bookResponseModels = null;
+//        try {
+//            bookResponseModels = mapper.readValue(data, new TypeReference<List<BookResponseModel>>() {
+//            });
+//            User user = getLoggedInUser();
+//            List<Integer> cartBookIds = user.getCartItemList();
+//            for (BookResponseModel bookResponseModel : bookResponseModels) {
+//                Book cartBook = new Book(bookResponseModel);
+//                cartBook.setCarted(cartBookIds.contains(bookResponseModel.getBookID()));
+//                bookList.add(cartBook);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return bookList;
+//    }
 
-    public User getLoggedInUser() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        List<User> userList = mapper.readValue(new File(context.getFilesDir(),
-                "Users.json"), new TypeReference<List<User>>() {
-        });
-        for (User user : userList) {
-            if (user.getUserID() == sharedPreference.getPresentUserId()) {
-                return user;
+    public User getLoggedInUser()  {
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            List<User> userList = mapper.readValue(new File(context.getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>() {
+            });
+            for (User user : userList) {
+                if (user.getUserID() == sharedPreference.getPresentUserId()) {
+                    return user;
+                }
             }
+        } catch(IOException jsonException){
+            jsonException.printStackTrace();
         }
+
         return null;
     }
     public ArrayList<Book> getFavoriteBooks() {
@@ -109,14 +116,52 @@ public class BookRepository {
         }
         return favoriteBooks;
     }
-    public ArrayList<Book> getCartItemBooks() {
-        ArrayList<Book> cartItemBooks = new ArrayList<>();
-        for(Book book : getCartItemList()){
-            if(book.isCarted()){
-                cartItemBooks.add(book);
-            }
+
+    public void addBookToCart(int bookID) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<User> userList = mapper.readValue(new File(context.getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>(){});
+            User user = getLoggedInUser();
+            CartResponseModel cart = new CartResponseModel(bookID, 1);
+            List<CartResponseModel> cartItemList = user.getCartItemList();
+            cartItemList.add(cart);
+            userList.get(user.getUserID()).setCartItemList(cartItemList);
+            String updatedFile = mapper.writeValueAsString(userList);
+            FileOutputStream fos = context.openFileOutput("Users.json", Context.MODE_PRIVATE);
+            fos.write(updatedFile.getBytes());
+            fos.close();
+        } catch (IOException jsonParseException) {
+            jsonParseException.printStackTrace();
         }
-        return cartItemBooks;
     }
 
+    public void removeBookToCart(int bookID) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<User> userList = mapper.readValue(new File(context.getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>(){});
+            User user = getLoggedInUser();
+            CartResponseModel cart = new CartResponseModel(bookID, 1);
+            List<CartResponseModel> cartItemList = user.getCartItemList();
+            for (int i =0; i < cartItemList.size(); i++) {
+                CartResponseModel model = cartItemList.get(i);
+                if( model.getBookID() == bookID) {
+                    int currentQuantity =  model.getQuantites();
+                    if (currentQuantity < 2) {
+                        cartItemList.remove(model);
+                    } else {
+                        model.setQuantites(currentQuantity - 1);
+                    }
+                }
+            }
+            userList.get(user.getUserID()).setCartItemList(cartItemList);
+            String updatedFile = mapper.writeValueAsString(userList);
+            FileOutputStream fos = context.openFileOutput("Users.json", Context.MODE_PRIVATE);
+            fos.write(updatedFile.getBytes());
+            fos.close();
+        } catch (IOException jsonParseException) {
+            jsonParseException.printStackTrace();
+        }
+    }
 }

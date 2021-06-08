@@ -57,7 +57,7 @@ public class bookListFragment extends Fragment {
             spanCount = 2;
         } else {
             // In portrait
-            spanCount = 2;
+            spanCount = 1;
         }
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView = view.findViewById(R.id.bookList_RecyclerView);

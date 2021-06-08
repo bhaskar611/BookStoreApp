@@ -14,10 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.fragments.CartFragment;
 import com.example.bridgelabz.bookstore.fragments.bookListFragment;
 import com.example.bridgelabz.bookstore.model.Book;
+import com.example.bridgelabz.bookstore.model.CartModel;
+import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,8 +34,10 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
     TextView bookCartTitle, bookCartAuthor, bookCartPrice,itemCount;
     ImageView bookCartImage,addBook,removeBook;
     int ItemCount = 0;
-    float bookPrice;
+    public static float bookPrice;
     SharedPreference sharedPreference;
+//    public static float totalPrice ;
+    BookRepository bookRepository;
 
 
     public CartList_ViewHolder(@NonNull View itemView) {
@@ -45,22 +50,25 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         addBook = itemView.findViewById(R.id.imageView);
         removeBook = itemView.findViewById(R.id.imageView2);
         sharedPreference = new SharedPreference(itemView.getContext());
+        bookRepository = new BookRepository(itemView.getContext());
 
     }
-    public void bind(Book book) {
-        bookCartTitle.setText(book.getBookTitle());
-        bookCartAuthor.setText(book.getBookAuthor());
-        bookCartPrice.setText(String.valueOf(book.getBookPrice()));
-        String imageUri = book.getBookImage();
+    public void bind(CartModel cart) {
+        this.ItemCount = cart.getQuantites();
+        bookCartTitle.setText(cart.getBook().getBookTitle());
+        bookCartAuthor.setText(cart.getBook().getBookAuthor());
+        bookCartPrice.setText(String.valueOf(cart.getBook().getBookPrice()));
+        String imageUri = cart.getBook().getBookImage();
         Glide.with(itemView.getContext())
                 .load(imageUri)
                 .into(bookCartImage);
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemCount = ItemCount + 1;
+                ItemCount++;
                 itemCount.setText(String.valueOf(ItemCount));
-                bookPrice = book.getBookPrice() * ItemCount;
+                bookPrice = cart.getBook().getBookPrice() * ItemCount;
+//                totalPrice = bookPrice;
                 bookCartPrice.setText(String.valueOf(bookPrice));
             }
         });
@@ -68,32 +76,39 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         removeBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemCount = ItemCount - 1;
+                ItemCount--;
                 itemCount.setText(String.valueOf(ItemCount));
-                bookPrice = book.getBookPrice() * ItemCount;
+                bookPrice = cart.getBook().getBookPrice() * ItemCount;
+//                totalPrice = bookPrice;
                 bookCartPrice.setText(String.valueOf(bookPrice));
                 if (ItemCount == 0){
-                    ObjectMapper mapper = new ObjectMapper();
-                    try {
-                        List<User> userList1 = mapper.readValue(new File(v.getContext().getFilesDir(),
-                                "Users.json"), new TypeReference<List<User>>(){});
-                        List<Integer> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItems();
-                        cartItems.remove(Integer.valueOf(book.getBookID()));
-                        userList1.get(sharedPreference.getPresentUserId()).setCartItems(cartItems);
-                        String updatedFile = mapper.writeValueAsString(userList1);
-                        FileOutputStream fos = v.getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
-                        fos.write(updatedFile.getBytes());
-                        fos.close();
-                    } catch (IOException e){
-                        e.printStackTrace();
-                    }
-                }
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                Fragment myFragment = new CartFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
-
+//                    ObjectMapper mapper = new ObjectMapper();
+//                    try {
+//                        List<User> userList1 = mapper.readValue(new File(v.getContext().getFilesDir(),
+//                                "Users.json"), new TypeReference<List<User>>(){});
+//                        List<CartResponseModel> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItemList();
+//                        try {
+//                            cartItems.remove(cart.getBook().getBookID());
+//                        }catch (IndexOutOfBoundsException e){
+//                            e.printStackTrace();
+//                        }
+//                        userList1.get(sharedPreference.getPresentUserId()).setCartItemList(cartItems);
+//                        String updatedFile = mapper.writeValueAsString(userList1);
+//                        FileOutputStream fos = v.getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
+//                        fos.write(updatedFile.getBytes());
+//                        fos.close();
+//                    } catch (IOException e){
+//                        e.printStackTrace();
+//                    }
+                    bookRepository.removeBookToCart(cart.getBook().getBookID());
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    Fragment myFragment = new CartFragment();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+               }
 
             }
+
         });
     }
+
 }
