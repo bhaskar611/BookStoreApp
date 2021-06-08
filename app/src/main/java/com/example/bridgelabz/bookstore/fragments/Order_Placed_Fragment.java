@@ -26,16 +26,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
 public class Order_Placed_Fragment extends Fragment {
 
-    TextView orderPlaced;
+    TextView orderPlaced,dateTime;
     Button cont_Shopping;
     SharedPreference sharedPreference;
     Order order;
+    private String date;
     public static long orderNo;
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,11 +51,16 @@ public class Order_Placed_Fragment extends Fragment {
        order = new Order();
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         orderPlaced = view.findViewById(R.id.textView10);
+        dateTime = view.findViewById(R.id.textView22);
         cont_Shopping = view.findViewById(R.id.button2);
+        calendar = Calendar.getInstance();
         //orderid + date + time
         sharedPreference = new SharedPreference(this.getContext());
         orderNo = System.currentTimeMillis();
         orderPlaced.setText(String.valueOf(orderNo) );
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        date = dateFormat.format(calendar.getTime());
+        dateTime.setText(date);
 
 //        ObjectMapper mapper = new ObjectMapper();
 //        try {

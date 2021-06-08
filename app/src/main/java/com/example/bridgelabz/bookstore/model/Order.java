@@ -8,13 +8,13 @@ public class Order {
     private long orderID;
    // private Double orderTotal;
     private List<CartModel> cart_items;
-   // private Date orderDate;
+    private Date orderDate;
 
-    public Order(long orderID /*Double orderTotal*/,List<CartModel> cart_items/*Date orderDate*/) {
+    public Order(long orderID /*Double orderTotal*/,List<CartModel> cart_items,Date orderDate) {
         this.orderID = orderID;
        // this.orderTotal = orderTotal;
         this.cart_items = cart_items;
-       // this.orderDate = orderDate;
+       this.orderDate = orderDate;
     }
 
     public Order(){
@@ -45,11 +45,11 @@ public class Order {
         this.cart_items = cart_items;
     }
 
-//    public Date getOrderDate() {
-//        return orderDate;
-//    }
-//
-//    public void setOrderDate(Date orderDate) {
-//        this.orderDate = orderDate;
-//    }
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
 }
