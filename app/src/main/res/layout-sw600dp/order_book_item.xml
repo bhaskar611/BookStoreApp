@@ -37,7 +37,7 @@
                 android:id="@+id/textView32"
                 android:layout_width="144dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="54dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginEnd="242dp"
                 android:layout_marginBottom="12dp"
                 android:text="TotalPrice"
@@ -45,6 +45,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView34"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -52,7 +53,6 @@
                 android:id="@+id/textView31"
                 android:layout_width="144dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="54dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="242dp"
                 android:layout_marginBottom="8dp"
@@ -61,6 +61,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView32"
                 app:layout_constraintEnd_toStartOf="@+id/textView30"
+                app:layout_constraintHorizontal_bias="0.425"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -130,9 +131,9 @@
 
             <TextView
                 android:id="@+id/textView23"
-                android:layout_width="144dp"
+                android:layout_width="250dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="54dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="51dp"
                 android:layout_marginEnd="242dp"
                 android:layout_marginBottom="15dp"
@@ -141,6 +142,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView31"
                 app:layout_constraintEnd_toStartOf="@+id/textView21"
+                app:layout_constraintHorizontal_bias="0.274"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

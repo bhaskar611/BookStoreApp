@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
+import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.OrderAdapter;
 import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.Order;
@@ -40,12 +41,14 @@ public class Order_Fragment extends Fragment {
     int spanCount;
     Date date;
     Calendar calendar;
+    SharedPreference sharedPreference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_, container, false);
+        sharedPreference = new SharedPreference(this.getContext());
 //        orderID = Order_Placed_Fragment.orderNo;
 //        calendar.getTime();
 //        cartRepository = new CartRepository(this.getContext());
@@ -62,53 +65,56 @@ public class Order_Fragment extends Fragment {
             // In portrait
             spanCount = 1;
         }
-//        List<Order> orderList = getAllOrders();
+       List<Order> orderList = getAllOrders();
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView = view.findViewById(R.id.order_RecyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-//        orderAdapter = new OrderAdapter(orderList);
+       orderAdapter = new OrderAdapter(orderList);
         recyclerView.setAdapter(orderAdapter);
         orderAdapter.notifyDataSetChanged();
-        onBackPressed(view);
+//        onBackPressed(view);
         return view;
 
     }
 
-//    private List<Order> getAllOrders() {
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );
-//            List<Order> orderList = userList1.get(1).
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    private List<Order> getAllOrders() {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Order> orderList = null;
+        try {
+            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );
+             orderList = userList1.get(sharedPreference.getPresentUserId()).getOrderList();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return orderList;
+    }
+
+//    private void onBackPressed(View view) {
+//
+//        Toolbar toolbar = (Toolbar) view.findViewById(R.id.order_toolbar);
+//        toolbar.setTitle("Order Fragment");
+//        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //handle any click event
+//                getParentFragmentManager().popBackStack();
+//
+//            }
+//        });
+//
+//
 //    }
-
-    private void onBackPressed(View view) {
-
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.order_toolbar);
-        toolbar.setTitle("Order Fragment");
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //handle any click event
-                getParentFragmentManager().popBackStack();
-
-            }
-        });
-
-
-    }
-
-    public void onResume() {
-        super.onResume();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
-    }
+//
+//    public void onResume() {
+//        super.onResume();
+//        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+//    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
+//    }
 }

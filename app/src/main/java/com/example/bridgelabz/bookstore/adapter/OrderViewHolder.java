@@ -14,10 +14,12 @@ import com.example.bridgelabz.bookstore.model.Order;
 public class OrderViewHolder  extends RecyclerView.ViewHolder{
     TextView orderID;
     ImageView bookPic;
+    TextView date;
     public OrderViewHolder(@NonNull View itemView) {
         super(itemView);
         orderID = itemView.findViewById(R.id.textView21);
         bookPic = itemView.findViewById(R.id.imageView4);
+        date = itemView.findViewById(R.id.textView30);
     }
 
     public void bind(Order order) {
@@ -27,7 +29,7 @@ public class OrderViewHolder  extends RecyclerView.ViewHolder{
                  imageUri =  order.getCart_items().get(i).getBook().getBookImage();
                 break;
             }
-
+            date.setText(order.getOrderDate());
         Glide.with(itemView.getContext())
                 .load(imageUri)
                 .into(bookPic);
