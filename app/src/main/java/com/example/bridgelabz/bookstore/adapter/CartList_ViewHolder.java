@@ -47,8 +47,8 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         bookCartImage = itemView.findViewById(R.id.CartList_bookImage);
         bookCartPrice =itemView.findViewById(R.id.CartList_bookPrice);
         itemCount = itemView.findViewById(R.id.textView3);
-        addBook = itemView.findViewById(R.id.imageView);
-        removeBook = itemView.findViewById(R.id.imageView2);
+        addBook = itemView.findViewById(R.id.imageView2);
+        removeBook = itemView.findViewById(R.id.imageView);
         sharedPreference = new SharedPreference(itemView.getContext());
         bookRepository = new BookRepository(itemView.getContext());
 

@@ -35,7 +35,7 @@ public class OrderViewHolder  extends RecyclerView.ViewHolder{
 //        for(int i=0; i<order.getCart_items().size(); i++){
 //            if (order.getOrderID())
 //        }
-       bookTitle.setText(String.valueOf(order.getCart_items().size()));
+       bookTitle.setText(String.valueOf(order.getOrderTotal()));
 //
         Glide.with(itemView.getContext())
                 .load(imageUri)
