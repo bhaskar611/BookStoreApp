@@ -52,7 +52,7 @@ public class CartFragment extends Fragment {
     Button checkOut;
     SharedPreference sharedPreference;
     TextView totalAmount;
-    float totalamount_Cart;
+   // float totalamount_Cart;
 
     @Nullable
     @Override
@@ -64,7 +64,7 @@ public class CartFragment extends Fragment {
        totalAmount = view.findViewById(R.id.textView25);
 //        totalAmount =
        //totalamount_Cart = CartList_ViewHolder.bookPrice;
-       totalAmount.setText(String.valueOf(totalamount_Cart));
+      // totalAmount.setText(String.valueOf(totalamount_Cart));
         sharedPreference = new SharedPreference(this.getContext());
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {

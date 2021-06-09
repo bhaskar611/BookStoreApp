@@ -106,7 +106,8 @@ public class Order_Placed_Fragment extends Fragment {
 //        String date = Order_Placed_Fragment.date;
 //        long orderID = Order_Placed_Fragment.orderNo;
         List<CartModel> cartList = cartRepository.getCartList();
-        order = new Order(orderNo
+        float price = cartRepository.calculateTotalPrice(cartList);
+        order = new Order(orderNo,price
                 ,cartList,date);
         try {
             List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),

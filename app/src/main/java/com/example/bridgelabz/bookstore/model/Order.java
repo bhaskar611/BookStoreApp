@@ -6,13 +6,13 @@ import java.util.List;
 public class Order {
 
     private long orderID;
-   // private Double orderTotal;
+    private float orderTotal;
     private List<CartModel> cart_items;
     private String orderDate;
 
-    public Order(long orderID /*Double orderTotal*/,List<CartModel> cart_items,String orderDate) {
+    public Order(long orderID, float orderTotal,List<CartModel> cart_items,String orderDate) {
         this.orderID = orderID;
-       // this.orderTotal = orderTotal;
+        this.orderTotal = orderTotal;
         this.cart_items = cart_items;
        this.orderDate = orderDate;
     }
@@ -29,13 +29,13 @@ public class Order {
         this.orderID = orderID;
     }
 
-//    public Double getOrderTotal() {
-//        return orderTotal;
-//    }
-//
-//    public void setOrderTotal(Double orderTotal) {
-//        this.orderTotal = orderTotal;
-//    }
+    public float getOrderTotal() {
+        return orderTotal;
+    }
+
+    public void setOrderTotal(float orderTotal) {
+        this.orderTotal = orderTotal;
+    }
 
     public List<CartModel> getCart_items() {
         return cart_items;

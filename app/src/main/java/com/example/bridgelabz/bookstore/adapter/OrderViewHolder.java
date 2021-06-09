@@ -12,7 +12,7 @@ import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.model.Order;
 
 public class OrderViewHolder  extends RecyclerView.ViewHolder{
-    TextView orderID;
+    TextView orderID,bookTitle;
     ImageView bookPic;
     TextView date;
     public OrderViewHolder(@NonNull View itemView) {
@@ -20,6 +20,7 @@ public class OrderViewHolder  extends RecyclerView.ViewHolder{
         orderID = itemView.findViewById(R.id.textView21);
         bookPic = itemView.findViewById(R.id.imageView4);
         date = itemView.findViewById(R.id.textView30);
+       bookTitle = itemView.findViewById(R.id.textView24);
     }
 
     public void bind(Order order) {
@@ -30,6 +31,12 @@ public class OrderViewHolder  extends RecyclerView.ViewHolder{
                 break;
             }
             date.setText(order.getOrderDate());
+//            bookTitle.setText(order.getCart_items().get());
+//        for(int i=0; i<order.getCart_items().size(); i++){
+//            if (order.getOrderID())
+//        }
+       bookTitle.setText(String.valueOf(order.getCart_items().size()));
+//
         Glide.with(itemView.getContext())
                 .load(imageUri)
                 .into(bookPic);
