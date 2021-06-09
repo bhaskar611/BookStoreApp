@@ -136,6 +136,33 @@ public class BookRepository {
         }
     }
 
+    public void incrementCart(int bookID) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<User> userList = mapper.readValue(new File(context.getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>(){});
+            User user = getLoggedInUser();
+            CartResponseModel cart = new CartResponseModel(bookID, 1);
+            List<CartResponseModel> cartItemList = user.getCartItemList();
+            for (int i =0; i < cartItemList.size(); i++) {
+                CartResponseModel model = cartItemList.get(i);
+                if( model.getBookID() == bookID) {
+                    int currentQuantity =  model.getQuantites();
+
+                    model.setQuantites(currentQuantity + 1);
+
+                }
+            }
+            userList.get(user.getUserID()).setCartItemList(cartItemList);
+            String updatedFile = mapper.writeValueAsString(userList);
+            FileOutputStream fos = context.openFileOutput("Users.json", Context.MODE_PRIVATE);
+            fos.write(updatedFile.getBytes());
+            fos.close();
+        } catch (IOException jsonParseException) {
+            jsonParseException.printStackTrace();
+        }
+    }
+
     public void removeBookToCart(int bookID) {
         try {
             ObjectMapper mapper = new ObjectMapper();

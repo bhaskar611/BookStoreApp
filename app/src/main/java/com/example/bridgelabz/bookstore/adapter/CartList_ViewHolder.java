@@ -65,10 +65,10 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bookRepository.addBookToCart(cart.getBook().getBookID());
                 ItemCount++;
                 itemCount.setText(String.valueOf(ItemCount));
                 bookPrice = cart.getBook().getBookPrice() * ItemCount;
-//                totalPrice = bookPrice;
                 bookCartPrice.setText(String.valueOf(bookPrice));
             }
         });
@@ -76,6 +76,7 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         removeBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bookRepository.removeBookToCart(cart.getBook().getBookID());
                 ItemCount--;
                 itemCount.setText(String.valueOf(ItemCount));
                 bookPrice = cart.getBook().getBookPrice() * ItemCount;
@@ -100,7 +101,6 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
 //                    } catch (IOException e){
 //                        e.printStackTrace();
 //                    }
-                    bookRepository.removeBookToCart(cart.getBook().getBookID());
                     AppCompatActivity activity = (AppCompatActivity) v.getContext();
                     Fragment myFragment = new CartFragment();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();

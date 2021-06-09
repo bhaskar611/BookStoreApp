@@ -8,9 +8,9 @@ public class Order {
     private long orderID;
    // private Double orderTotal;
     private List<CartModel> cart_items;
-    private Date orderDate;
+    private String orderDate;
 
-    public Order(long orderID /*Double orderTotal*/,List<CartModel> cart_items,Date orderDate) {
+    public Order(long orderID /*Double orderTotal*/,List<CartModel> cart_items,String orderDate) {
         this.orderID = orderID;
        // this.orderTotal = orderTotal;
         this.cart_items = cart_items;
@@ -45,11 +45,11 @@ public class Order {
         this.cart_items = cart_items;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 }

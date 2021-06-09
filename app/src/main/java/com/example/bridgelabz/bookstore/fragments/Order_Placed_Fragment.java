@@ -17,7 +17,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.Order;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -37,11 +39,11 @@ public class Order_Placed_Fragment extends Fragment {
     Button cont_Shopping;
     SharedPreference sharedPreference;
     Order order;
-    private String date;
+    public static String date;
     public static long orderNo;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-
+    CartRepository cartRepository;
 
 
     @Override
@@ -56,6 +58,7 @@ public class Order_Placed_Fragment extends Fragment {
         calendar = Calendar.getInstance();
         //orderid + date + time
         sharedPreference = new SharedPreference(this.getContext());
+        cartRepository = new CartRepository(this.getContext());
         orderNo = System.currentTimeMillis();
         orderPlaced.setText(String.valueOf(orderNo) );
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -80,6 +83,7 @@ public class Order_Placed_Fragment extends Fragment {
         cont_Shopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loaddata();
                 Fragment fragment = new bookListFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -95,6 +99,29 @@ public class Order_Placed_Fragment extends Fragment {
         return view;
     }
 
+    private void loaddata() {
+        ObjectMapper mapper = new ObjectMapper();
+//        String date = Order_Placed_Fragment.date;
+//        long orderID = Order_Placed_Fragment.orderNo;
+        List<CartModel> cartList = cartRepository.getCartList();
+        order = new Order(orderNo
+                ,cartList,date);
+        try {
+            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>(){});
+            List<Order> orderList = userList1.get(sharedPreference.getPresentUserId()).getOrderList();
+            orderList.add(order);
+            userList1.get(sharedPreference.getPresentUserId()).setOrderList(orderList);
+            String updatedFile = mapper.writeValueAsString(userList1);
+            FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
+            fos.write(updatedFile.getBytes());
+            fos.close();
+
+        } catch (IOException jsonParseException) {
+            jsonParseException.printStackTrace();
+        }
+    }
+
     private void onBackPressed(View view) {
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.Order_Placed_ToolBar);
@@ -104,6 +131,7 @@ public class Order_Placed_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //handle any click event
+                loaddata();
                 getParentFragmentManager().popBackStack();
 
             }

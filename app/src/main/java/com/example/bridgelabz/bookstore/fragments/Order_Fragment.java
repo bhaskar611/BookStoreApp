@@ -18,7 +18,12 @@ import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.adapter.OrderAdapter;
 import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.Order;
+import com.example.bridgelabz.bookstore.model.User;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,14 +46,14 @@ public class Order_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_, container, false);
-        orderID = Order_Placed_Fragment.orderNo;
-        calendar.getTime();
-        cartRepository = new CartRepository(this.getContext());
-        List<CartModel> cartList = cartRepository.getCartList();
-        date =calendar.getTime();
-        order = new Order(orderID,cartList,date);
-        List<Order> orderList = new ArrayList<>();
-        orderList.add(order);
+//        orderID = Order_Placed_Fragment.orderNo;
+//        calendar.getTime();
+//        cartRepository = new CartRepository(this.getContext());
+//        List<CartModel> cartList = cartRepository.getCartList();
+//        date =calendar.getTime();
+//        order = new Order(orderID,cartList,date);
+//        List<Order> orderList = new ArrayList<>();
+//        orderList.add(order);
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
@@ -57,17 +62,29 @@ public class Order_Fragment extends Fragment {
             // In portrait
             spanCount = 1;
         }
+//        List<Order> orderList = getAllOrders();
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView = view.findViewById(R.id.order_RecyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        orderAdapter = new OrderAdapter(orderList);
+//        orderAdapter = new OrderAdapter(orderList);
         recyclerView.setAdapter(orderAdapter);
         orderAdapter.notifyDataSetChanged();
         onBackPressed(view);
         return view;
 
     }
+
+//    private List<Order> getAllOrders() {
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );
+//            List<Order> orderList = userList1.get(1).
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     private void onBackPressed(View view) {
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.order_toolbar);
