@@ -4,20 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_book_cart"
-    android:backgroundTint="#FF5722"
+    android:background="@drawable/splashimg"
     tools:context=".ui.splashActivity.SplashActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="262dp"
         android:layout_height="43dp"
-        android:background="#FFC107"
-        android:backgroundTint="#DCD1D1"
+        android:fontFamily="@font/berkshire_swash"
         android:gravity="center"
         android:text="BookStore"
         android:textColor="#CD3C3C"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.557"

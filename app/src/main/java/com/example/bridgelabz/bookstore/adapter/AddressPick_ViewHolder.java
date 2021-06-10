@@ -19,9 +19,9 @@ public class AddressPick_ViewHolder extends RecyclerView.ViewHolder implements V
 
     public AddressPick_ViewHolder(@NonNull View itemView,OnAddressListener onAddressListener) {
         super(itemView);
-        mobile = itemView.findViewById(R.id.mobile_pick);
-        houseNO = itemView.findViewById(R.id.house_pick);
-        Street = itemView.findViewById(R.id.Street_pick);
+        mobile = itemView.findViewById(R.id.house_pick);
+        houseNO = itemView.findViewById(R.id.Street_pick);
+        Street = itemView.findViewById(R.id.mobile_pick);
         City = itemView.findViewById(R.id.city_pick);
         State = itemView.findViewById(R.id.state_pick);
         pin = itemView.findViewById(R.id.pin_pick);

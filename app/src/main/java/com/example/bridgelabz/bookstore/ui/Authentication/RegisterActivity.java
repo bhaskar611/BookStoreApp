@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
             passwordId.requestFocus();
             return false;
         } else if (!password.matches("(^(?=.*[A-Z]))(?=.*[0-9])(?=.*[a-z])(?=.*[@*&^%#-*+!]{1}).{8,}$")) {
-            passwordId.setError("Please enter Valid password");
+            passwordId.setError("Password should contain atleast one numeric and one special character");
             passwordId.requestFocus();
             return false;
         } else if (!password.equals(confirmPassword)) {

@@ -8,33 +8,34 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bridgelabz.bookstore.R;
-import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.CartModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartListAdapter extends RecyclerView.Adapter<CartList_ViewHolder> {
+public class CartListAdapter extends RecyclerView.Adapter<CartItemViewHolder> {
 
     private List<CartModel> book_cart_items = new ArrayList<>();
+    private CartBookClickListener cartBookClickListener;
 
-    public CartListAdapter(List<CartModel> book_cart_items) {
+    public CartListAdapter(List<CartModel> book_cart_items,CartBookClickListener cartBookClickListener) {
         this.book_cart_items = book_cart_items;
+        this.cartBookClickListener = cartBookClickListener;
     }
 
     @NonNull
     @Override
-    public CartList_ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CartItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.cart_list_item, parent, false);
-        return new CartList_ViewHolder(view);
+        return new CartItemViewHolder(view,cartBookClickListener);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartList_ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
         CartModel cartModel = book_cart_items.get(position);
-        holder.bind(cartModel);
+        holder.bind(cartModel, position);
     }
 
 

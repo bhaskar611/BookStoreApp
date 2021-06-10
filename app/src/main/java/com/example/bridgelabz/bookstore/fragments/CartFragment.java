@@ -12,23 +12,20 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
-import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
+import com.example.bridgelabz.bookstore.adapter.CartBookClickListener;
 import com.example.bridgelabz.bookstore.adapter.CartListAdapter;
-import com.example.bridgelabz.bookstore.adapter.CartList_ViewHolder;
-import com.example.bridgelabz.bookstore.adapter.OnBookListener;
 import com.example.bridgelabz.bookstore.model.Address;
-import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -36,7 +33,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,7 +40,7 @@ import java.util.Objects;
 public class CartFragment extends Fragment {
 
     private CartListAdapter cartListAdapter;
-    private static final String TAG = "FavouriteFragment";
+    private static final String TAG = "CartFragment";
     private RecyclerView cart_recyclerView;
     private int spanCount;
     private BookRepository bookRepository;
@@ -52,7 +48,7 @@ public class CartFragment extends Fragment {
     Button checkOut;
     SharedPreference sharedPreference;
     TextView totalAmount;
-   // float totalamount_Cart;
+    float totalamount_Cart;
 
     @Nullable
     @Override
@@ -60,11 +56,13 @@ public class CartFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         cartRepository = new CartRepository(getContext());
+        bookRepository = new BookRepository(getContext());
         List<CartModel> cartItemBooks = cartRepository.getCartList();
-       totalAmount = view.findViewById(R.id.textView25);
-//        totalAmount =
-       //totalamount_Cart = CartList_ViewHolder.bookPrice;
-      // totalAmount.setText(String.valueOf(totalamount_Cart));
+      totalAmount = view.findViewById(R.id.textView25);
+
+        totalAmount = view.findViewById(R.id.textView35);
+       // totalamount_Cart = cartRepository.calculateTotalPrice(cartItemBooks);
+        totalAmount.setText(String.valueOf(totalamount_Cart));
         sharedPreference = new SharedPreference(this.getContext());
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -79,7 +77,31 @@ public class CartFragment extends Fragment {
         checkOut = view.findViewById(R.id.button);
         cart_recyclerView.setLayoutManager(layoutManager);
         cart_recyclerView.setHasFixedSize(true);
-        cartListAdapter = new CartListAdapter(cartItemBooks);
+        cartListAdapter = new CartListAdapter(cartItemBooks, new CartBookClickListener() {
+            @Override
+            public void onAddItemQuantity(CartModel cart) {
+                bookRepository.incrementCartItemQuantity(cart.getBook().getBookID());
+                List<CartModel> updatedCart = cartRepository.getCartList();
+                Log.e(TAG, "onAddItemQuantity: "+ updatedCart.size());
+                totalamount_Cart = cartRepository.calculateTotalPrice(updatedCart);
+                Log.e(TAG, "onAddItemQuantity: " + totalamount_Cart );
+                totalAmount.setText(String.valueOf(totalamount_Cart));
+            }
+
+            @Override
+            public void onMinusItemQuantity(CartModel cart, int position) {
+
+                bookRepository.decrementCartItemQuantity(cart.getBook().getBookID());
+                List<CartModel> updatedCart = cartRepository.getCartList();
+                totalamount_Cart = cartRepository.calculateTotalPrice(updatedCart);
+                totalAmount.setText(String.valueOf(totalamount_Cart));
+//                cartListAdapter.notifyItemRemoved(position);
+//                cartListAdapter.setCartBooksList(updatedCart);
+//                if(updatedCart.size() == 0){
+//                    cartListAdapter.notifyDataSetChanged();
+//                }
+            }
+        });
         cart_recyclerView.setAdapter(cartListAdapter);
         cartListAdapter.notifyDataSetChanged();
         onBackPressed(view);

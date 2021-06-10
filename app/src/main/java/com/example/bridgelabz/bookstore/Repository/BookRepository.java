@@ -136,7 +136,7 @@ public class BookRepository {
         }
     }
 
-    public void incrementCart(int bookID) {
+    public void incrementCartItemQuantity(int bookID) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             List<User> userList = mapper.readValue(new File(context.getFilesDir(),
@@ -148,7 +148,6 @@ public class BookRepository {
                 CartResponseModel model = cartItemList.get(i);
                 if( model.getBookID() == bookID) {
                     int currentQuantity =  model.getQuantites();
-
                     model.setQuantites(currentQuantity + 1);
 
                 }
@@ -163,7 +162,7 @@ public class BookRepository {
         }
     }
 
-    public void removeBookToCart(int bookID) {
+    public void decrementCartItemQuantity(int bookID) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             List<User> userList = mapper.readValue(new File(context.getFilesDir(),

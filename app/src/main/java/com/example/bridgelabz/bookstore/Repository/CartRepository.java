@@ -85,7 +85,7 @@ public class CartRepository {
     public float calculateTotalPrice(List<CartModel> cartList) {
         float totalPrice = 0.0f;
         for (CartModel cart : cartList) {
-            totalPrice = totalPrice + cart.getBook().getBookPrice() * cart.getQuantites();
+            totalPrice += cart.getBook().getBookPrice() * cart.getQuantites();
         }
         return totalPrice;
     }

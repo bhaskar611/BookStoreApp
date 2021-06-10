@@ -30,17 +30,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class CartList_ViewHolder extends RecyclerView.ViewHolder {
+public class CartItemViewHolder extends RecyclerView.ViewHolder {
     TextView bookCartTitle, bookCartAuthor, bookCartPrice,itemCount;
     ImageView bookCartImage,addBook,removeBook;
     int ItemCount = 0;
     public static float bookPrice;
+    public float totalBookPrice = 1;
     SharedPreference sharedPreference;
 //    public static float totalPrice ;
     BookRepository bookRepository;
+    private int cartPosition = 0;
+    private CartModel cart;
+    private CartBookClickListener cartBookClickListener;
 
 
-    public CartList_ViewHolder(@NonNull View itemView) {
+    public CartItemViewHolder(@NonNull View itemView, CartBookClickListener cartBookClickListener) {
         super(itemView);
         bookCartTitle = itemView.findViewById(R.id.CartList_bookTitle);
         bookCartAuthor = itemView.findViewById(R.id.CartList_bookAuthor);
@@ -51,10 +55,14 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         removeBook = itemView.findViewById(R.id.imageView);
         sharedPreference = new SharedPreference(itemView.getContext());
         bookRepository = new BookRepository(itemView.getContext());
+        this.cartBookClickListener = cartBookClickListener;
 
     }
-    public void bind(CartModel cart) {
+    public void bind(CartModel cart, int cartPosition) {
+        this.cart = cart;
+        this.cartPosition = cartPosition;
         this.ItemCount = cart.getQuantites();
+        totalBookPrice = displayPrices(ItemCount);
         bookCartTitle.setText(cart.getBook().getBookTitle());
         bookCartAuthor.setText(cart.getBook().getBookAuthor());
         bookCartPrice.setText(String.valueOf(cart.getBook().getBookPrice()));
@@ -65,23 +73,26 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
         addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bookRepository.addBookToCart(cart.getBook().getBookID());
+               // bookRepository.addBookToCart(cart.getBook().getBookID());
                 ItemCount++;
+                displayPrices(ItemCount);
                 itemCount.setText(String.valueOf(ItemCount));
-                bookPrice = cart.getBook().getBookPrice() * ItemCount;
-                bookCartPrice.setText(String.valueOf(bookPrice));
+               //    bookPrice = cart.getBook().getBookPrice() * ItemCount;
+                bookCartPrice.setText(String.valueOf(totalBookPrice));
+                cartBookClickListener.onAddItemQuantity(cart);
             }
         });
 
         removeBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bookRepository.removeBookToCart(cart.getBook().getBookID());
+                //bookRepository.removeBookToCart(cart.getBook().getBookID());
                 ItemCount--;
                 itemCount.setText(String.valueOf(ItemCount));
-                bookPrice = cart.getBook().getBookPrice() * ItemCount;
+                cartBookClickListener.onMinusItemQuantity(cart, cartPosition);
+                //bookPrice = cart.getBook().getBookPrice() * ItemCount;
 //                totalPrice = bookPrice;
-                bookCartPrice.setText(String.valueOf(bookPrice));
+                bookCartPrice.setText(String.valueOf(totalBookPrice));
                 if (ItemCount == 0){
 //                    ObjectMapper mapper = new ObjectMapper();
 //                    try {
@@ -109,6 +120,12 @@ public class CartList_ViewHolder extends RecyclerView.ViewHolder {
             }
 
         });
+    }
+
+    private float displayPrices(int item) {
+        itemCount.setText(String.valueOf(item));
+        totalBookPrice = cart.getBook().getBookPrice() * item;
+        return totalBookPrice;
     }
 
 }

@@ -8,6 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +26,7 @@ import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Order;
 import com.example.bridgelabz.bookstore.model.User;
+import com.example.bridgelabz.bookstore.workManager.MyWorker;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -66,22 +70,16 @@ public class Order_Placed_Fragment extends Fragment {
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         date = dateFormat.format(calendar.getTime());
         dateTime.setText(date);
+        final OneTimeWorkRequest.Builder workRequest =
+                new OneTimeWorkRequest.Builder(MyWorker.class);
+        Data.Builder data = new Data.Builder();
+        data.putString(MyWorker.NOTIFICATION_CHANNEL_ID, "order");
+        data.putString(MyWorker.NOTIFICATION_CHANNEL, "ORDERS");
+        data.putString(MyWorker.NOTIFICATION_TITLE, "Order Placed Success");
+        data.putString(MyWorker.NOTIFICATION_MESSAGE, "Track the Order with Order Id : " + orderNo );
+        workRequest.setInputData(data.build());
+        WorkManager.getInstance(getContext()).enqueue(workRequest.build());
 
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//                List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
-//                        "Users.json"), new TypeReference<List<User>>(){});
-//                List<Order> orderID = userList1.get(sharedPreference.getPresentUserId()).getOrderList();
-//                orderID.add(order.setOrderID((orderNo)));
-//                userList1.get(sharedPreference.getPresentUserId()).setOrderList();
-//                String updatedFile = mapper.writeValueAsString(userList1);
-//                FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
-//                fos.write(updatedFile.getBytes());
-//                fos.close();
-//
-//            } catch (IOException jsonParseException) {
-//                jsonParseException.printStackTrace();
-//            }
         cont_Shopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
