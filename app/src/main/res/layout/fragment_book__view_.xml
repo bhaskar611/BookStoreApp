@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8BC34A"
+    android:background="#F9FBF6"
+    android:backgroundTint="#FDFCFC"
     tools:context=".fragments.Book_View_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,64 +13,65 @@
 
     <ImageView
         android:id="@+id/BookView_Image"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="252dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:src="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/Add_To_Cart"
         android:layout_width="293dp"
         android:layout_height="51dp"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginTop="29dp"
         android:text="Add_To_Cart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookView_Price" />
+        app:layout_constraintTop_toBottomOf="@+id/BookView_Price"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/BookView_Title"
-        android:layout_width="152dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="148dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/berkshire_swash"
         android:text="TextView"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookView_Image" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
         android:id="@+id/BookView_Author"
-        android:layout_width="127dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="173dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="219dp"
+        android:singleLine="true"
         android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookView_Title" />
+        app:layout_constraintStart_toEndOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/BookView_Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="242dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="280dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/BookView_Author" />
 
     <androidx.appcompat.widget.Toolbar
@@ -82,5 +84,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="431dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:background="#9C8A8A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BookView_Image" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:text="By"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/BookView_Author"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BookView_Title" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/Rs"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/Add_To_Cart"
+        app:layout_constraintEnd_toStartOf="@+id/BookView_Price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BookView_Author"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

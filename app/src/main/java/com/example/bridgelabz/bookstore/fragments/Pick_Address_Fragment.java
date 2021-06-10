@@ -67,9 +67,9 @@ public class Pick_Address_Fragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        recyclerView = view.findViewById(R.id.pick_RecyclerView);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+            recyclerView = view.findViewById(R.id.pick_RecyclerView);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
         address_pick_adapter = new Address_Pick_Adapter(addressList, new OnAddressListener() {
             @Override
             public void onAddressClick(int position, View viewHolder) {

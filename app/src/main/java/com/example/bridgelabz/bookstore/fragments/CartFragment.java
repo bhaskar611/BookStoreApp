@@ -16,16 +16,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 import com.example.bridgelabz.bookstore.adapter.CartListAdapter;
+import com.example.bridgelabz.bookstore.adapter.CartList_ViewHolder;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
 import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.Book;
+import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,16 +48,23 @@ public class CartFragment extends Fragment {
     private RecyclerView cart_recyclerView;
     private int spanCount;
     private BookRepository bookRepository;
+    private CartRepository cartRepository;
     Button checkOut;
     SharedPreference sharedPreference;
+    TextView totalAmount;
+   // float totalamount_Cart;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        bookRepository = new BookRepository(getContext());
-        ArrayList<Book> cartItemBooks = bookRepository.getCartItemBooks();
+        cartRepository = new CartRepository(getContext());
+        List<CartModel> cartItemBooks = cartRepository.getCartList();
+       totalAmount = view.findViewById(R.id.textView25);
+//        totalAmount =
+       //totalamount_Cart = CartList_ViewHolder.bookPrice;
+      // totalAmount.setText(String.valueOf(totalamount_Cart));
         sharedPreference = new SharedPreference(this.getContext());
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -61,7 +72,7 @@ public class CartFragment extends Fragment {
             spanCount = 2;
         } else {
             // In portrait
-            spanCount = 2;
+            spanCount = 1;
         }
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         cart_recyclerView = view.findViewById(R.id.CartList_RecyclerView);

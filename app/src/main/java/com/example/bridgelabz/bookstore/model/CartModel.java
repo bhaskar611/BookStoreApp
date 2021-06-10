@@ -1,17 +1,17 @@
 package com.example.bridgelabz.bookstore.model;
 
-public class Cart_Model {
+public class CartModel {
 
     private int Quantites;
     private Book book;
 
 
-    public Cart_Model(int Quantites, Book book) {
+    public CartModel(int Quantites, Book book) {
         this.Quantites = Quantites;
         this.book = book;
     }
 
-    public Cart_Model(){
+    public CartModel(){
 
     }
 

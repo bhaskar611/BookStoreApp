@@ -9,8 +9,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.fragments.CartFragment;
+import com.example.bridgelabz.bookstore.fragments.Order_Fragment;
 import com.example.bridgelabz.bookstore.fragments.WishListFragment;
 import com.example.bridgelabz.bookstore.fragments.bookListFragment;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
@@ -21,6 +23,8 @@ public class DashBoardActivity extends AppCompatActivity {
     bookListFragment booklistFragment;
     WishListFragment wishListFragment;
     CartFragment cartFragment;
+    CartRepository cartRepository;
+    Order_Fragment order_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,10 @@ public class DashBoardActivity extends AppCompatActivity {
         booklistFragment = new bookListFragment();
         wishListFragment = new WishListFragment();
         cartFragment = new CartFragment();
+        order_fragment = new Order_Fragment();
+        cartRepository = new CartRepository(this);
+
+        int badges = cartRepository.getCartList().size();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -46,6 +54,17 @@ public class DashBoardActivity extends AppCompatActivity {
         MenuItem logout = menu.findItem(R.id.sign_out);
         MenuItem wishList = menu.findItem(R.id.favourites);
         MenuItem cartList = menu.findItem(R.id.cart);
+        MenuItem orderList = menu.findItem(R.id.orders);
+
+        orderList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        order_fragment).addToBackStack(null).commit();
+                return false;
+            }
+        });
         logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

@@ -45,7 +45,7 @@ public class WishListFragment extends Fragment {
             spanCount = 2;
         } else {
             // In portrait
-            spanCount = 2;
+            spanCount = 1;
         }
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView = view.findViewById(R.id.Wish_RecyclerView);
@@ -66,7 +66,7 @@ public class WishListFragment extends Fragment {
     private void onBackPressed(View view) {
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.WishList_toolbar);
-        toolbar.setTitle("Title");
+        toolbar.setTitle("Wish List");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

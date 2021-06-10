@@ -18,7 +18,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Cart_Item;
 import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.util.CallBack;
@@ -40,11 +43,17 @@ public class Book_View_Fragment extends Fragment {
     TextView bookTitle, bookAuthor, bookPrice;
     ArrayList<Cart_Item> cart_items = new ArrayList<>();
     SharedPreference sharedPreference;
+    BookRepository bookRepository;
+    CartRepository cartRepository;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book__view_, container, false);
+        cartRepository = new CartRepository(getContext());
+        bookRepository = new BookRepository(getContext());
 
         onBackPressed(view);
 
@@ -66,7 +75,8 @@ public class Book_View_Fragment extends Fragment {
         add_To_Cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCartItems(BookId);
+//                getCartItems(BookId);
+                bookRepository.addBookToCart(BookId);
                 add_To_Cart.setEnabled(false);
             }
         });
@@ -100,7 +110,7 @@ public class Book_View_Fragment extends Fragment {
     private void onBackPressed(View view) {
 
        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle("Title");
+        toolbar.setTitle("Book Title");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,23 +132,23 @@ public class Book_View_Fragment extends Fragment {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
     }
 
-    public void getCartItems(int bookID){
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-                List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
-                        "Users.json"), new TypeReference<List<User>>(){});
-                List<Integer> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItems();
-                cartItems.add(bookID);
-                userList1.get(sharedPreference.getPresentUserId()).setCartItems(cartItems);
-                String updatedFile = mapper.writeValueAsString(userList1);
-                FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
-                fos.write(updatedFile.getBytes());
-                fos.close();
-
-        } catch (IOException e){
-                    e.printStackTrace();
-}
-    }
+//    public void getCartItems(int bookID){
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//                List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+//                        "Users.json"), new TypeReference<List<User>>(){});
+//                List<CartResponseModel> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItemList();
+//                cartItems.add(bookID);
+//                userList1.get(sharedPreference.getPresentUserId()).setCartItemList(cartItems);
+//                String updatedFile = mapper.writeValueAsString(userList1);
+//                FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
+//                fos.write(updatedFile.getBytes());
+//                fos.close();
+//
+//        } catch (IOException e){
+//                    e.printStackTrace();
+//}
+//    }
 }
 
 

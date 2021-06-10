@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.model.Address;
+import com.example.bridgelabz.bookstore.model.CartResponseModel;
+import com.example.bridgelabz.bookstore.model.Order;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +27,7 @@ import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText emailId, passwordId;
+    private EditText emailId, passwordId,cnfrmPassword;
     private Button btnSignUp;
     private TextView nameId,textViewSignIn;
     SharedPreference sharedPreference;
@@ -41,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void findViews() {
         emailId = findViewById(R.id.et_email);
         passwordId = findViewById(R.id.et_password);
+        cnfrmPassword=findViewById(R.id.et_repassword);
         btnSignUp = findViewById(R.id.btn_register);
         textViewSignIn = findViewById(R.id.sigin);
         nameId = findViewById(R.id.et_name);
@@ -89,17 +92,22 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isValidPassword(String password){
+    private boolean isValidPassword(String password,String confirmPassword) {
 
-        if(password.isEmpty()) {
+        if (password.isEmpty()) {
             passwordId.setError("Please enter your password");
             passwordId.requestFocus();
             return false;
-        } else  if(!password.matches("(^(?=.*[A-Z]))(?=.*[0-9])(?=.*[a-z])(?=.*[@*&^%#-*+!]{1}).{8,}$")) {
+        } else if (!password.matches("(^(?=.*[A-Z]))(?=.*[0-9])(?=.*[a-z])(?=.*[@*&^%#-*+!]{1}).{8,}$")) {
             passwordId.setError("Please enter Valid password");
             passwordId.requestFocus();
             return false;
-        }else{
+        } else if (!password.equals(confirmPassword)) {
+            cnfrmPassword.setError("password not matches");
+            cnfrmPassword.requestFocus();
+            return false;
+        } else {
+
             return true;
         }
     }
@@ -110,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email = emailId.getText().toString();
         String password = passwordId.getText().toString();
         String name = nameId.getText().toString();
+        String confirmPassword = cnfrmPassword.getText().toString();
         String jsonStr;
 
         if (!isValidName(name)) {
@@ -117,10 +126,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else if (!isValidEmail(email)) {
             return;
-        }else if (!isValidPassword(password)) {
+        }else if (!isValidPassword(password,confirmPassword)) {
             return;
-        }  else  if(email.isEmpty() && password.isEmpty()) {
-            Toast.makeText(RegisterActivity.this,"Fields Are Empty!",
+        } else  if(email.isEmpty() && password.isEmpty()) {
+            Toast.makeText(RegisterActivity.this, "Fields Are Empty!",
                     Toast.LENGTH_SHORT).show();
         } else  if(!(email.isEmpty() && password.isEmpty())){
             try{
@@ -128,12 +137,13 @@ public class RegisterActivity extends AppCompatActivity {
                 ObjectMapper mapper = new ObjectMapper();
                 List<User> userList = new ArrayList<User>();
                 List<Integer> favouriteItemsList = new ArrayList<>();
-                List<Integer> cartItemsList = new ArrayList<>();
+                List<CartResponseModel> cartItemsList = new ArrayList<>();
                 List<Address> addressList = new ArrayList<>();
+                List<Order> orderList = new ArrayList<>();
                 int userId = checkRegisters();
                 sharedPreference.setRegisteredUsersCount(userId);
                 sharedPreference.setPresentUserId(userId);
-                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList);
+                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList,orderList);
                 userList.add(user);
                 if (file.exists()){
                ArrayList<User>  userList1 = mapper.readValue(new File(getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );

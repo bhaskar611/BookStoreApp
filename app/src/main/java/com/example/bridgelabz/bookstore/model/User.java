@@ -10,17 +10,28 @@ public class User {
     private String email;
     private String password;
 
-    public List<Integer> getCartItems() {
-        return cartItems;
+    public List<Order> getOrderList() {
+        return orderList;
     }
 
-    public void setCartItems(List<Integer> cartItems) {
-        this.cartItems = cartItems;
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+    private List<Order> orderList;
+
+
+    public List<CartResponseModel> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartResponseModel> cartItemList) {
+        this.cartItemList = cartItemList;
     }
 
     private List<Integer> favouriteItemsList;
     private int userID;
-    private List<Integer> cartItems;
+    private List<CartResponseModel> cartItemList;
     private List<Address> userAddress;
 
     public List<Address> getUserAddress() {
@@ -71,14 +82,15 @@ public class User {
         this.password = password;
     }
 
-    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<Integer> cartItems,List<Address> userAddress) {
+    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<CartResponseModel> cartItemList,List<Address> userAddress,List<Order> orderList) {
         this.userID = userId;
         this.email = email;
         this.password = password;
         this.userName = userName;
         this.favouriteItemsList = favouriteItemsList;
-        this.cartItems = cartItems;
+        this.cartItemList = cartItemList;
         this.userAddress = userAddress;
+        this.orderList = orderList;
     }
     public User(){
 
