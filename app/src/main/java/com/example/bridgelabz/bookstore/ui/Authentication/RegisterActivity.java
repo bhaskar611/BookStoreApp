@@ -120,6 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
         String name = nameId.getText().toString();
         String confirmPassword = cnfrmPassword.getText().toString();
         String jsonStr;
+        String userImage = null;
 
         if (!isValidName(name)) {
             return;
@@ -143,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                 int userId = checkRegisters();
                 sharedPreference.setRegisteredUsersCount(userId);
                 sharedPreference.setPresentUserId(userId);
-                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList,orderList);
+                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList,orderList,userImage);
                 userList.add(user);
                 if (file.exists()){
                ArrayList<User>  userList1 = mapper.readValue(new File(getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );

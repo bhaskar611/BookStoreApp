@@ -1,5 +1,7 @@
 package com.example.bridgelabz.bookstore.model;
 
+import java.util.List;
+
 public class BookResponseModel {
 
     private String bookTitle;
@@ -8,6 +10,15 @@ public class BookResponseModel {
     private int bookID;
     private float bookPrice;
     private String description;
+    private List<Review> ReviewList;
+
+    public List<Review> getReviewList() {
+        return ReviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        ReviewList = reviewList;
+    }
 
     public String getDescription() {
         return description;
@@ -66,13 +77,14 @@ public class BookResponseModel {
 
 
     public BookResponseModel(int bookID, String bookTitle, String bookAuthor, String description,
-                             String bookImage, float bookPrice) {
+                             String bookImage, float bookPrice,List<Review> ReviewList) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.description = description;
         this.bookPrice = bookPrice;
         this.bookImage = bookImage;
+        this.ReviewList = ReviewList;
     }
 
 

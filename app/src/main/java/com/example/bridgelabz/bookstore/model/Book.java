@@ -1,5 +1,8 @@
 package com.example.bridgelabz.bookstore.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book {
     private String bookTitle;
     private String bookAuthor;
@@ -9,9 +12,17 @@ public class Book {
     private String description;
     private boolean isCarted;
     private boolean isFavourite;
+    private List<Review> ReviewList;
 
+    public List<Review> getReviewList() {
+        return ReviewList;
+    }
 
-   public boolean isCarted() {
+    public void setReviewList(List<Review> reviewList) {
+        ReviewList = reviewList;
+    }
+
+    public boolean isCarted() {
         return isCarted;
     }
 
@@ -90,7 +101,7 @@ public class Book {
         this.bookTitle = bookTitle;
     }
 
-    public Book(int bookID,String bookTitle,String bookAuthor,String description,String bookImage,float bookPrice,boolean isCarted, boolean isFavourite) {
+    public Book(int bookID,String bookTitle,String bookAuthor,String description,String bookImage,float bookPrice,boolean isCarted, boolean isFavourite,List<Review> ReviewList) {
 
         this.bookID = bookID;
         this.bookTitle = bookTitle;
@@ -100,6 +111,7 @@ public class Book {
        this.bookPrice = bookPrice;
        this.isCarted = isCarted;
         this.isFavourite = isFavourite;
+        this.ReviewList = ReviewList;
 
     }
 

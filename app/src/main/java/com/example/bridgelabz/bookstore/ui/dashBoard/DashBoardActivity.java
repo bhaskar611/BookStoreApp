@@ -13,6 +13,7 @@ import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.fragments.CartFragment;
 import com.example.bridgelabz.bookstore.fragments.Order_Fragment;
+import com.example.bridgelabz.bookstore.fragments.ProfileFragment;
 import com.example.bridgelabz.bookstore.fragments.WishListFragment;
 import com.example.bridgelabz.bookstore.fragments.bookListFragment;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
@@ -25,6 +26,7 @@ public class DashBoardActivity extends AppCompatActivity {
     CartFragment cartFragment;
     CartRepository cartRepository;
     Order_Fragment order_fragment;
+    ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class DashBoardActivity extends AppCompatActivity {
         wishListFragment = new WishListFragment();
         cartFragment = new CartFragment();
         order_fragment = new Order_Fragment();
+        profileFragment = new ProfileFragment();
         cartRepository = new CartRepository(this);
 
         int badges = cartRepository.getCartList().size();
@@ -55,6 +58,18 @@ public class DashBoardActivity extends AppCompatActivity {
         MenuItem wishList = menu.findItem(R.id.favourites);
         MenuItem cartList = menu.findItem(R.id.cart);
         MenuItem orderList = menu.findItem(R.id.orders);
+        MenuItem profilePage = menu.findItem(R.id.profile);
+
+
+        profilePage.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        profileFragment).addToBackStack(null).commit();
+                return false;
+            }
+        });
 
         orderList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override

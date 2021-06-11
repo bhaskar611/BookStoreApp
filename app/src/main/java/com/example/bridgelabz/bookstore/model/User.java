@@ -9,6 +9,15 @@ public class User {
     private String userName;
     private String email;
     private String password;
+    private String userImage;
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
 
     public List<Order> getOrderList() {
         return orderList;
@@ -82,7 +91,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<CartResponseModel> cartItemList,List<Address> userAddress,List<Order> orderList) {
+    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<CartResponseModel> cartItemList,List<Address> userAddress,List<Order> orderList,String userImage) {
         this.userID = userId;
         this.email = email;
         this.password = password;
@@ -91,6 +100,7 @@ public class User {
         this.cartItemList = cartItemList;
         this.userAddress = userAddress;
         this.orderList = orderList;
+        this.userImage = userImage;
     }
     public User(){
 
