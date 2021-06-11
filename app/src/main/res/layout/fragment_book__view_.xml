@@ -10,13 +10,30 @@
     <!-- TODO: Update blank fragment layout -->
 
 
-    <ImageView
-        android:id="@+id/BookView_Image"
-        android:layout_width="match_parent"
-        android:layout_height="252dp"
+    <View
+        android:id="@+id/view2"
+        android:layout_width="431dp"
+        android:layout_height="5dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#9C8A8A"
+        app:layout_constraintBottom_toTopOf="@+id/textView32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <ImageView
+        android:id="@+id/BookView_Image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:src="@tools:sample/avatars" />
@@ -25,20 +42,20 @@
         android:id="@+id/Add_To_Cart"
         android:layout_width="293dp"
         android:layout_height="51dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:text="Add_To_Cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookView_Price"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
     <TextView
         android:id="@+id/BookView_Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/berkshire_swash"
         android:text="TextView"
         android:textSize="30sp"
@@ -65,14 +82,13 @@
         android:id="@+id/BookView_Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="280dp"
         android:text="TextView"
         android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/BookView_Author" />
+        app:layout_constraintStart_toEndOf="@+id/textView5" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -100,9 +116,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:text="By"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toStartOf="@+id/BookView_Author"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BookView_Title" />
@@ -112,13 +130,46 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/Rs"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/Add_To_Cart"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toStartOf="@+id/BookView_Price"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookView_Author"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/BookView_Author" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="Description"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView37"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="The Guide is a 1958 novel written in English by the Indian author R. K. Narayan. Like most of his works the novel is based on Malgudi, the fictional town in South India."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/Add_To_Cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
