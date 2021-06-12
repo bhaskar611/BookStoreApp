@@ -45,6 +45,7 @@
         android:layout_height="3dp"
         android:layout_marginTop="38dp"
         android:background="#D6C2C2"
+        app:layout_constraintBottom_toTopOf="@+id/Profile_Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
@@ -62,5 +63,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.371" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Profile_Address"
+        android:layout_width="413dp"
+        android:layout_height="529dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

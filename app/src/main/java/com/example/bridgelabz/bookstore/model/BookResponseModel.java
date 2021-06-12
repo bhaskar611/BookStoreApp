@@ -10,14 +10,14 @@ public class BookResponseModel {
     private int bookID;
     private float bookPrice;
     private String description;
-    private List<Review> ReviewList;
+    private List<Review> reviewList;
 
     public List<Review> getReviewList() {
-        return ReviewList;
+        return reviewList;
     }
 
     public void setReviewList(List<Review> reviewList) {
-        ReviewList = reviewList;
+        this.reviewList = reviewList;
     }
 
     public String getDescription() {
@@ -77,14 +77,14 @@ public class BookResponseModel {
 
 
     public BookResponseModel(int bookID, String bookTitle, String bookAuthor, String description,
-                             String bookImage, float bookPrice,List<Review> ReviewList) {
+                             String bookImage, float bookPrice,List<Review> reviewList) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
         this.description = description;
         this.bookPrice = bookPrice;
         this.bookImage = bookImage;
-        this.ReviewList = ReviewList;
+        this.reviewList = reviewList;
     }
 
 

@@ -88,11 +88,13 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 //bookRepository.removeBookToCart(cart.getBook().getBookID());
                 ItemCount--;
+                displayPrices(ItemCount);
                 itemCount.setText(String.valueOf(ItemCount));
-                cartBookClickListener.onMinusItemQuantity(cart, cartPosition);
                 //bookPrice = cart.getBook().getBookPrice() * ItemCount;
 //                totalPrice = bookPrice;
                 bookCartPrice.setText(String.valueOf(totalBookPrice));
+
+                cartBookClickListener.onMinusItemQuantity(cart, cartPosition);
                 if (ItemCount == 0){
 //                    ObjectMapper mapper = new ObjectMapper();
 //                    try {

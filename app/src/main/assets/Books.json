@@ -1,11 +1,178 @@
 [
   {
     "bookID": 1,
-    "bookTitle":"THE GUIDE",
-    "bookAuthor":"R.k Narayan",
+    "bookTitle": "THE GUIDE",
+    "bookAuthor": "R.k Narayan",
     "description": "good book",
-    "bookImage":"https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1494428973l/43641._SY475_.jpg",
-    "bookPrice" : 200.0
+    "bookImage": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1494428973l/43641._SY475_.jpg",
+    "bookPrice": 200.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   },
   {
     "bookID": 2,
@@ -13,7 +180,174 @@
     "bookAuthor":"APJ Abdul Kalam",
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/en/3/3a/Wings_of_Fire_by_A_P_J_Abdul_Kalam_Book_Cover.jpg",
-    "bookPrice" : 250.0
+    "bookPrice" : 250.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   },
   {
     "bookID": 3,
@@ -21,7 +355,174 @@
     "bookAuthor":"E.M FORESTER",
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/en/thumb/5/54/APassageToIndia.jpg/330px-APassageToIndia.jpg",
-    "bookPrice" : 400.0
+    "bookPrice" : 400.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   },
   {
     "bookID": 4,
@@ -29,7 +530,174 @@
     "bookAuthor":"Amitav Ghosh",
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/en/8/8e/The_Hungry_Tide.jpg",
-    "bookPrice" : 200.0
+    "bookPrice" : 200.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   },
   {
     "bookID": 5,
@@ -37,7 +705,174 @@
     "bookAuthor":"Stephen King",
     "description": "good book",
     "bookImage":"https://i2.wp.com/www.nerdsandbeyond.com/wp-content/uploads/2020/08/Later-book-cover.jpg?fit=844%2C1445&ssl=1",
-    "bookPrice" : 100.0
+    "bookPrice" : 100.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   },
   {
     "bookID": 6,
@@ -45,7 +880,174 @@
     "bookAuthor":"Nazanine Hozar",
     "description": "good book",
     "bookImage":"https://images-na.ssl-images-amazon.com/images/I/41+IGQE26QL._SX324_BO1,204,203,200_.jpg",
-    "bookPrice" : 200.0
+    "bookPrice" : 200.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   },
   {
     "bookID": 7,
@@ -53,6 +1055,173 @@
     "bookAuthor":"Ralph",
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Invisible_Man_%281952_1st_ed_jacket_cover%29.jpg/330px-Invisible_Man_%281952_1st_ed_jacket_cover%29.jpg",
-    "bookPrice" : 300.0
+    "bookPrice" : 300.0,
+    "reviewList": [
+      {
+        "author": "Random user 1",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 2",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 3",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 4",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 5",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 6",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 7",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 8",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 9",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 10",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 11",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 12",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 13",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 14",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 15",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 16",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 17",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 18",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 19",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 20",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 21",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 22",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 23",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 24",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 25",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 26",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 27",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 28",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 29",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 30",
+        "rating": 3.0,
+        "review": "Fine book"
+      },
+      {
+        "author": "Random user 31",
+        "rating": 5.0,
+        "review": "Excellent book"
+      },
+      {
+        "author": "Random user 32",
+        "rating": 4.0,
+        "review": "Good book"
+      },
+      {
+        "author": "Random user 33",
+        "rating": 3.0,
+        "review": "Fine book"
+      }
+    ]
   }
 ]

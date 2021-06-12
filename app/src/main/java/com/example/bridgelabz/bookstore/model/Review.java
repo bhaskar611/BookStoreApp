@@ -1,40 +1,41 @@
 package com.example.bridgelabz.bookstore.model;
 
 public class Review {
-    private String userName;
-    private String userReview;
-    private float userRating;
+    private String author;
+    private String review;
+    private float rating;
 
-    public Review(String userName, String userReview, float userRating) {
-        this.userName = userName;
-        this.userReview = userReview;
-        this.userRating = userRating;
+    public Review(String author, String review, float rating) {
+        this.author = author;
+        this.review = review;
+        this.rating = rating;
     }
 
     public Review() {
+
     }
 
-    public String getUserName() {
-        return userName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public String getUserReview() {
-        return userReview;
+    public String getReview() {
+        return review;
     }
 
-    public void setUserReview(String userReview) {
-        this.userReview = userReview;
+    public void setReview(String review) {
+        this.review = review;
     }
 
-    public float getUserRating() {
-        return userRating;
+    public float getRating() {
+        return rating;
     }
 
-    public void setUserRating(float userRating) {
-        this.userRating = userRating;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 }

@@ -6,7 +6,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +24,12 @@ import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.adapter.Address_Pick_Adapter;
+import com.example.bridgelabz.bookstore.adapter.ReviewAdapter;
+import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Cart_Item;
+import com.example.bridgelabz.bookstore.model.Review;
 import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.util.CallBack;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -38,6 +45,7 @@ import java.util.Objects;
 public class Book_View_Fragment extends Fragment {
 
 
+    private static final String TAG = "Book_View_Fragment";
     ImageView bookImage;
     Button add_To_Cart;
     TextView bookTitle, bookAuthor, bookPrice;
@@ -45,6 +53,8 @@ public class Book_View_Fragment extends Fragment {
     SharedPreference sharedPreference;
     BookRepository bookRepository;
     CartRepository cartRepository;
+    RecyclerView recyclerView;
+    private ReviewAdapter reviewAdapter;
 
 
 
@@ -54,7 +64,7 @@ public class Book_View_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_book__view_, container, false);
         cartRepository = new CartRepository(getContext());
         bookRepository = new BookRepository(getContext());
-
+        final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         onBackPressed(view);
 
         // Inflate the layout for this fragment
@@ -86,6 +96,15 @@ public class Book_View_Fragment extends Fragment {
         Glide.with(getContext())
                 .load(BookImage)
                 .into(bookImage);
+        recyclerView = view.findViewById(R.id.review_recyclerView);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        List<Review> bookArrayList = bookRepository.getBookList().get(BookId).getReviewList();
+        Log.e(TAG, "onCreateView: " + bookArrayList );
+        reviewAdapter = new ReviewAdapter(bookArrayList);
+        recyclerView.setAdapter(reviewAdapter);
+        reviewAdapter.notifyDataSetChanged();
+
         return view;
     }
 

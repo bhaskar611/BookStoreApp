@@ -12,14 +12,14 @@ public class Book {
     private String description;
     private boolean isCarted;
     private boolean isFavourite;
-    private List<Review> ReviewList;
+    private List<Review> reviewList;
 
     public List<Review> getReviewList() {
-        return ReviewList;
+        return reviewList;
     }
 
     public void setReviewList(List<Review> reviewList) {
-        ReviewList = reviewList;
+        this.reviewList = reviewList;
     }
 
     public boolean isCarted() {
@@ -37,6 +37,7 @@ public class Book {
         this.description = bookResponseModel.getDescription();
         this.bookPrice = bookResponseModel.getBookPrice();
         this.bookImage = bookResponseModel.getBookImage();
+        this.reviewList = bookResponseModel.getReviewList();
     }
 
     public boolean isFavourite() {
@@ -101,7 +102,7 @@ public class Book {
         this.bookTitle = bookTitle;
     }
 
-    public Book(int bookID,String bookTitle,String bookAuthor,String description,String bookImage,float bookPrice,boolean isCarted, boolean isFavourite,List<Review> ReviewList) {
+    public Book(int bookID,String bookTitle,String bookAuthor,String description,String bookImage,float bookPrice,boolean isCarted, boolean isFavourite,List<Review> reviewList) {
 
         this.bookID = bookID;
         this.bookTitle = bookTitle;
@@ -111,7 +112,7 @@ public class Book {
        this.bookPrice = bookPrice;
        this.isCarted = isCarted;
         this.isFavourite = isFavourite;
-        this.ReviewList = ReviewList;
+        this.reviewList = reviewList;
 
     }
 

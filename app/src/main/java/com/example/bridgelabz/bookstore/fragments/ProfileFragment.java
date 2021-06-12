@@ -3,10 +3,15 @@ package com.example.bridgelabz.bookstore.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -15,10 +20,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.adapter.Address_Pick_Adapter;
+import com.example.bridgelabz.bookstore.adapter.OnAddressListener;
+import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
@@ -33,10 +43,23 @@ public class ProfileFragment extends Fragment {
     Button userAddress;
     ImageView userPic;
     SharedPreference sharedPreference;
+    RecyclerView recyclerView;
+    int spanCount;
+    private Address_Pick_Adapter address_pick_adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        List<Address> addressList = new ArrayList<>();
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // In landscape
+            spanCount = 2;
+        } else {
+            // In portrait
+            spanCount = 1;
+        }
+        final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         userName = view.findViewById(R.id.profileName);
         userEmail = view.findViewById(R.id.profileEmail);
@@ -61,9 +84,28 @@ public class ProfileFragment extends Fragment {
             username = userList1.get(sharedPreference.getPresentUserId()).getUserName();
             useremail = userList1.get(sharedPreference.getPresentUserId()).getEmail();
             userImage = userList1.get(sharedPreference.getPresentUserId()).getUserImage();
+            int i;
+            for (i=0;i<userList1.size();i++) {
+                if(userList1.get(i).getUserID() ==  sharedPreference.getPresentUserId()) {
+//                    isLoggedIN = true;
+                    addressList = userList1.get(i).getUserAddress();
+                    break;
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        recyclerView = view.findViewById(R.id.Profile_Address);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        address_pick_adapter = new Address_Pick_Adapter(addressList, new OnAddressListener() {
+            @Override
+            public void onAddressClick(int position, View viewHolder) {
+                Toast.makeText(getContext(), "Address is in profile", Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerView.setAdapter(address_pick_adapter);
+        address_pick_adapter.notifyDataSetChanged();
         userName.setText(username);
         userEmail.setText(useremail);
         Glide.with(getContext()).load(userImage).into(userPic);
