@@ -130,7 +130,6 @@
                 android:text="City"
                 android:textColor="#292626"
                 android:textColorHighlight="#201E1E"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
 

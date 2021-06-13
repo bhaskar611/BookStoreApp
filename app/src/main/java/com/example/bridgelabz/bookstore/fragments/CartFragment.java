@@ -61,7 +61,7 @@ public class CartFragment extends Fragment {
       totalAmount = view.findViewById(R.id.textView25);
 
         totalAmount = view.findViewById(R.id.textView35);
-       // totalamount_Cart = cartRepository.calculateTotalPrice(cartItemBooks);
+        totalamount_Cart = cartRepository.calculateTotalPrice(cartItemBooks);
         totalAmount.setText(String.valueOf(totalamount_Cart));
         sharedPreference = new SharedPreference(this.getContext());
         int orientation = getResources().getConfiguration().orientation;
@@ -90,11 +90,15 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onMinusItemQuantity(CartModel cart, int position) {
-
+                if(cart.getQuantites() < 2){
+                    cartListAdapter.removeAt(position);
+                }
                 bookRepository.decrementCartItemQuantity(cart.getBook().getBookID());
                 List<CartModel> updatedCart = cartRepository.getCartList();
                 totalamount_Cart = cartRepository.calculateTotalPrice(updatedCart);
                 totalAmount.setText(String.valueOf(totalamount_Cart));
+                cartListAdapter.setCartBooksList(updatedCart);
+
 //                cartListAdapter.notifyItemRemoved(position);
 //                cartListAdapter.setCartBooksList(updatedCart);
 //                if(updatedCart.size() == 0){

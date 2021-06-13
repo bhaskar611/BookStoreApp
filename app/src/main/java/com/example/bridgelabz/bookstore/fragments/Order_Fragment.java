@@ -73,7 +73,7 @@ public class Order_Fragment extends Fragment {
        orderAdapter = new OrderAdapter(orderList);
         recyclerView.setAdapter(orderAdapter);
         orderAdapter.notifyDataSetChanged();
-//        onBackPressed(view);
+        onBackPressed(view);
         return view;
 
     }
@@ -91,30 +91,30 @@ public class Order_Fragment extends Fragment {
         return orderList;
     }
 
-//    private void onBackPressed(View view) {
-//
-//        Toolbar toolbar = (Toolbar) view.findViewById(R.id.order_toolbar);
-//        toolbar.setTitle("Order Fragment");
-//        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //handle any click event
-//                getParentFragmentManager().popBackStack();
-//
-//            }
-//        });
-//
-//
-//    }
-//
-//    public void onResume() {
-//        super.onResume();
-//        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
-//    }
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
-//    }
+    private void onBackPressed(View view) {
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.order_toolbar);
+        toolbar.setTitle("Order Fragment");
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //handle any click event
+                getParentFragmentManager().popBackStack();
+
+            }
+        });
+
+
+    }
+
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
+    }
 }

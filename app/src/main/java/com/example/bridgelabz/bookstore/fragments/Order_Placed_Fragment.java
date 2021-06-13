@@ -93,7 +93,7 @@ public class Order_Placed_Fragment extends Fragment {
             }
         });
 
-        onBackPressed(view);
+
 
 
         return view;
@@ -125,23 +125,6 @@ public class Order_Placed_Fragment extends Fragment {
         }
     }
 
-    private void onBackPressed(View view) {
-
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.Order_Placed_ToolBar);
-        toolbar.setTitle("Cart List");
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //handle any click event
-                loaddata();
-                getParentFragmentManager().popBackStack();
-
-            }
-        });
-
-
-    }
 
     public void onResume() {
         super.onResume();

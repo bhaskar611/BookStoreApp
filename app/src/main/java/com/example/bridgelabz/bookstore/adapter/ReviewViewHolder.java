@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.Review;
+import com.example.bridgelabz.bookstore.model.ReviewModel;
 
 public class ReviewViewHolder extends RecyclerView.ViewHolder {
     TextView reviewuser,reviewdetails;
@@ -20,8 +21,8 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         reviewdetails = itemView.findViewById(R.id.review_detail);
         reviewrating = itemView.findViewById(R.id.review_user_rating);
     }
-    public void bind(Review review){
-        reviewuser.setText(review.getAuthor());
+    public void bind(ReviewModel review){
+        reviewuser.setText(review.getUserName());
         reviewdetails.setText(review.getReview());
         reviewrating.setRating(review.getRating());
     }

@@ -30,6 +30,7 @@ import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Cart_Item;
 import com.example.bridgelabz.bookstore.model.Review;
+import com.example.bridgelabz.bookstore.model.ReviewModel;
 import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.util.CallBack;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -47,7 +48,7 @@ public class Book_View_Fragment extends Fragment {
 
     private static final String TAG = "Book_View_Fragment";
     ImageView bookImage;
-    Button add_To_Cart;
+    Button add_To_Cart,addReview;
     TextView bookTitle, bookAuthor, bookPrice;
     ArrayList<Cart_Item> cart_items = new ArrayList<>();
     SharedPreference sharedPreference;
@@ -55,9 +56,12 @@ public class Book_View_Fragment extends Fragment {
     CartRepository cartRepository;
     RecyclerView recyclerView;
     private ReviewAdapter reviewAdapter;
-
-
-
+    ReviewFragment reviewFragment;
+    String BookTitle;
+    String BookAuthor;
+    String BookImage;
+    float BookPrice;
+    int BookId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,23 +73,40 @@ public class Book_View_Fragment extends Fragment {
 
         // Inflate the layout for this fragment
 
-        String BookTitle = getArguments().getString("BookTitle");
-        String BookAuthor = getArguments().getString("BookAuthor");
-        String BookImage = getArguments().getString("BookImage");
-        float BookPrice = getArguments().getFloat("BookPrice");
-        int BookId = getArguments().getInt("BookID");
+        //assert getArguments() != null;
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+             BookTitle = getArguments().getString("BookTitle");
+             BookAuthor = getArguments().getString("BookAuthor");
+             BookImage = getArguments().getString("BookImage");
+             BookPrice = getArguments().getFloat("BookPrice");
+             BookId = getArguments().getInt("BookID");
+        }
 
         bookImage = view.findViewById(R.id.BookView_Image);
         bookTitle = view.findViewById(R.id.BookView_Title);
         bookAuthor = view.findViewById(R.id.BookView_Author);
         bookPrice = view.findViewById(R.id.BookView_Price);
         add_To_Cart = view.findViewById(R.id.Add_To_Cart);
+        addReview = view.findViewById(R.id.reviewButton);
+        addReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewFragment = new ReviewFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("BookReviewID", BookId);
+                reviewFragment.setArguments(bundle);
+
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, reviewFragment)
+                        .addToBackStack(null).commit();
+            }
+        });
         sharedPreference = new SharedPreference(this.getContext());
 
         add_To_Cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                getCartItems(BookId);
                 bookRepository.addBookToCart(BookId);
                 add_To_Cart.setEnabled(false);
             }
@@ -99,33 +120,44 @@ public class Book_View_Fragment extends Fragment {
         recyclerView = view.findViewById(R.id.review_recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        List<Review> bookArrayList = bookRepository.getBookList().get(BookId).getReviewList();
-        Log.e(TAG, "onCreateView: " + bookArrayList );
-        reviewAdapter = new ReviewAdapter(bookArrayList);
+//        List<Review> bookArrayList = bookRepository.getBookList().get(BookId-1).getReviewList();
+//        Log.e(TAG, "onCreateView: " + bookArrayList );
+        ObjectMapper mapper = new ObjectMapper();
+        List<ReviewModel> reviewList = new ArrayList<>();
+        List<ReviewModel> bookReview = new ArrayList<>();
+
+
+        try {
+            reviewList = mapper.readValue(new File(getContext().getFilesDir(), "reviews.json"),new TypeReference<List<ReviewModel>>(){} );
+//            String userReview = reviewList.get(BookId).getReview();
+            Log.e(TAG, "review list: " + reviewList );
+//            String userName = reviewList.get(BookId).getUserName();
+//            float rating = reviewList.get(BookId).getRating();
+//            Review review = new Review(userName,userReview,rating);
+//            reviewModelList.add(review);
+            for (int i=0;i<reviewList.size();i++) {
+                if (reviewList.get(i).getBookID() == BookId){
+                    String userName = reviewList.get(i).getUserName();
+                    String review = reviewList.get(i).getReview();
+                    float rating = reviewList.get(i).getRating();
+                    long reviewID = reviewList.get(i).getReviewID();
+                    int bookid = reviewList.get(i).getBookID();
+                    int authorID = reviewList.get(i).getUserID();
+                    ReviewModel reviewModel = new ReviewModel(userName,authorID,reviewID,bookid,rating,review);
+                    bookReview.add(reviewModel);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        reviewAdapter = new ReviewAdapter(bookReview);
         recyclerView.setAdapter(reviewAdapter);
         reviewAdapter.notifyDataSetChanged();
 
         return view;
     }
 
-//    private void removeCartItems(int bookID) {
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
-//                    "Users.json"), new TypeReference<List<User>>(){});
-//            List<Integer> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItems();
-//            cartItems.remove(Integer.valueOf(bookID));
-//            userList1.get(sharedPreference.getPresentUserId()).setCartItems(cartItems);
-//            String updatedFile = mapper.writeValueAsString(userList1);
-//            FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
-//            fos.write(updatedFile.getBytes());
-//            fos.close();
-//
-//        } catch (IOException e){
-//            e.printStackTrace();
-//        }
-//
-//    }
+
     private void onBackPressed(View view) {
 
        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -150,24 +182,6 @@ public class Book_View_Fragment extends Fragment {
         super.onStop();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
     }
-
-//    public void getCartItems(int bookID){
-//        ObjectMapper mapper = new ObjectMapper();
-//        try {
-//                List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
-//                        "Users.json"), new TypeReference<List<User>>(){});
-//                List<CartResponseModel> cartItems = userList1.get(sharedPreference.getPresentUserId()).getCartItemList();
-//                cartItems.add(bookID);
-//                userList1.get(sharedPreference.getPresentUserId()).setCartItemList(cartItems);
-//                String updatedFile = mapper.writeValueAsString(userList1);
-//                FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
-//                fos.write(updatedFile.getBytes());
-//                fos.close();
-//
-//        } catch (IOException e){
-//                    e.printStackTrace();
-//}
-//    }
 }
 
 

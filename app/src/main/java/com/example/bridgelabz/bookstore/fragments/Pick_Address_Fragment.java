@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
@@ -37,9 +38,11 @@ public class Pick_Address_Fragment extends Fragment {
     RecyclerView recyclerView;
     int spanCount;
     private Address_Pick_Adapter address_pick_adapter;
+    Button addAddress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
         List<Address> addressList = new ArrayList<>();
         int orientation = getResources().getConfiguration().orientation;
@@ -53,6 +56,19 @@ public class Pick_Address_Fragment extends Fragment {
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         sharedPreference = new SharedPreference(this.getContext());
         View view = inflater.inflate(R.layout.fragment_pick__address_, container, false);
+        addAddress = view.findViewById(R.id.addAddressPick);
+        addAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new AddressFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
         ObjectMapper mapper = new ObjectMapper();
         try {
             List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );

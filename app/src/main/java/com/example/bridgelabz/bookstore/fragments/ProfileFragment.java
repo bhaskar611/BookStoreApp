@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,6 +39,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
     TextView userName,userEmail;
@@ -109,6 +112,7 @@ public class ProfileFragment extends Fragment {
         userName.setText(username);
         userEmail.setText(useremail);
         Glide.with(getContext()).load(userImage).into(userPic);
+        onBackPressed(view);
         return view;
     }
     @Override
@@ -144,6 +148,32 @@ public class ProfileFragment extends Fragment {
             jsonParseException.printStackTrace();
         }
 
+    }
+    private void onBackPressed(View view) {
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.profile_toolbar);
+        toolbar.setTitle("Profile");
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //handle any click event
+                getParentFragmentManager().popBackStack();
+
+            }
+        });
+
+
+    }
+
+    public void onResume() {
+        super.onResume();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
     }
 
 }

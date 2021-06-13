@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.Review;
+import com.example.bridgelabz.bookstore.model.ReviewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
 
-    List<Review> reviewList = new ArrayList<>();
+    List<ReviewModel> reviewList = new ArrayList<>();
 
-    public ReviewAdapter (List<Review> reviewList) {
+    public ReviewAdapter (List<ReviewModel> reviewList) {
         this.reviewList = reviewList;
     }
     @NonNull
@@ -31,7 +32,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
-        Review review = reviewList.get(position);
+        ReviewModel review = reviewList.get(position);
         holder.bind(review);
     }
 

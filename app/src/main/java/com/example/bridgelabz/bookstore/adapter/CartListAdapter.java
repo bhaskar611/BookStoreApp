@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bridgelabz.bookstore.R;
+import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.CartModel;
 
 import java.util.ArrayList;
@@ -44,6 +45,32 @@ public class CartListAdapter extends RecyclerView.Adapter<CartItemViewHolder> {
     @Override
     public int getItemCount() {
         return book_cart_items.size();
+    }
+
+    public Book getItem(int position) {
+        try{
+            return book_cart_items.get(position).getBook();
+        }catch (ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<CartModel> getCartBooksList() {
+        return book_cart_items;
+    }
+
+    public void setCartBooksList(List<CartModel> cartBooksList) {
+        this.book_cart_items = cartBooksList;
+    }
+
+    public void removeAt(int position) {
+        try{
+            book_cart_items.remove(position);
+            notifyItemRemoved(position);
+        } catch(IndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
     }
 
 }

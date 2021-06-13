@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,16 +20,20 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 //import com.example.bridgelabz.bookstore.dataManager.BookListManager;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
 import com.example.bridgelabz.bookstore.model.Book;
+import com.example.bridgelabz.bookstore.model.ReviewModel;
+import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
 import com.example.bridgelabz.bookstore.util.CallBack;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -43,6 +49,7 @@ public class bookListFragment extends Fragment {
     private int spanCount;
     Book_View_Fragment bookFragment;
     private BookRepository bookRepository;
+    SharedPreference sharedPreference;
 
     @Nullable
     @Override
@@ -52,6 +59,7 @@ public class bookListFragment extends Fragment {
 //        final GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
         int orientation = getResources().getConfiguration().orientation;
         bookRepository = new BookRepository(getContext());
+        sharedPreference = new SharedPreference(this.getContext());
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
             spanCount = 2;
@@ -64,13 +72,54 @@ public class bookListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         initRecyclerView();
-
+        createReviewFile();
         return view;
     }
+
+    private void createReviewFile() {
+        String userName = null;
+        String jsonStr = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>() {
+            });
+            userName = userList1.get(sharedPreference.getPresentUserId()).getUserName();
+        } catch (IOException jsonParseException) {
+            jsonParseException.printStackTrace();
+        }
+
+        try {
+            String userReview = "good book";
+            float userRating =4.0f;
+            int BookId = 1;
+            long reviewID = System.currentTimeMillis();
+            File file = new File(getContext().getFilesDir(), "reviews.json");
+            List<ReviewModel> reviewList = new ArrayList<ReviewModel>();
+            int userID = sharedPreference.getPresentUserId();
+            ReviewModel review = new ReviewModel(userName, userID, reviewID, BookId, userRating, userReview);
+            reviewList.add(review);
+            if (file.exists()) {
+
+            } else {
+                jsonStr = mapper.writeValueAsString(reviewList);
+                FileOutputStream fos = getContext().openFileOutput("reviews.json", Context.MODE_PRIVATE);
+                fos.write(jsonStr.getBytes());
+                fos.close();
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     private void initRecyclerView() {
 
         ArrayList<Book> bookArrayList = bookRepository.getBookList();
+        Log.e(TAG, "initRecyclerView: " + bookArrayList );
         booksListAdapter = new BookListAdapter(bookArrayList, new OnBookListener() {
             @Override
             public void onBookClick(int position, View viewHolder) {
@@ -91,6 +140,13 @@ public class bookListFragment extends Fragment {
 
 
                 bookFragment.setArguments(bundle);
+                bookFragment.setArguments(bundle);
+
+                bookFragment.setArguments(bundle);
+
+                bookFragment.setArguments(bundle);
+                bookFragment.setArguments(bundle);
+
 
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, bookFragment)
@@ -100,5 +156,7 @@ public class bookListFragment extends Fragment {
         recyclerView.setAdapter(booksListAdapter);
         booksListAdapter.notifyDataSetChanged();
     }
+
+
 
 }
