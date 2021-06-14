@@ -1,133 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bgpic1"
+    android:layout_height="wrap_content"
     tools:context=".fragments.AddressFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/bgpic1">
 
-    <EditText
-        android:id="@+id/Mobile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Mobile"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/HouseNo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        <!-- TODO: Update blank fragment layout -->
 
-    <EditText
-        android:id="@+id/HouseNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="HouseNo"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/Street"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Mobile" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/Street"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Street"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/City"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HouseNo" />
+        <EditText
+            android:id="@+id/Mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="91dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="113dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Mobile"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/HouseNo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-    <EditText
-        android:id="@+id/City"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="City"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/State"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Street" />
+        <EditText
+            android:id="@+id/HouseNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="HouseNo"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/Street"
+            app:layout_constraintEnd_toEndOf="@+id/Mobile"
+            app:layout_constraintStart_toStartOf="@+id/Mobile"
+            app:layout_constraintTop_toBottomOf="@+id/Mobile" />
 
-    <EditText
-        android:id="@+id/State"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="State"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/Pincode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/City" />
+        <EditText
+            android:id="@+id/Street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Street"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/City"
+            app:layout_constraintEnd_toEndOf="@+id/HouseNo"
+            app:layout_constraintStart_toStartOf="@+id/HouseNo"
+            app:layout_constraintTop_toBottomOf="@+id/HouseNo" />
 
-    <EditText
-        android:id="@+id/Pincode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="113dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="Pincode"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/State" />
+        <EditText
+            android:id="@+id/City"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="City"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/State"
+            app:layout_constraintEnd_toEndOf="@+id/Street"
+            app:layout_constraintStart_toStartOf="@+id/Street"
+            app:layout_constraintTop_toBottomOf="@+id/Street" />
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="170dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="172dp"
-        android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Pincode" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/State"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="State"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/Pincode"
+            app:layout_constraintEnd_toEndOf="@+id/City"
+            app:layout_constraintStart_toStartOf="@+id/City"
+            app:layout_constraintTop_toBottomOf="@+id/City" />
+
+        <EditText
+            android:id="@+id/Pincode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Pincode"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:layout_constraintEnd_toEndOf="@+id/State"
+            app:layout_constraintStart_toStartOf="@+id/State"
+            app:layout_constraintTop_toBottomOf="@+id/State" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="146dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="172dp"
+            android:text="Submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.337"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Pincode" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

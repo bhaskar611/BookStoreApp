@@ -1,10 +1,16 @@
 package com.example.bridgelabz.bookstore.fragments;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,12 +18,14 @@ import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
@@ -70,6 +78,7 @@ public class Order_Placed_Fragment extends Fragment {
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         date = dateFormat.format(calendar.getTime());
         dateTime.setText(date);
+
         final OneTimeWorkRequest.Builder workRequest =
                 new OneTimeWorkRequest.Builder(MyWorker.class);
         Data.Builder data = new Data.Builder();
@@ -98,6 +107,7 @@ public class Order_Placed_Fragment extends Fragment {
 
         return view;
     }
+
 
     private void loaddata() {
         ObjectMapper mapper = new ObjectMapper();
@@ -135,4 +145,5 @@ public class Order_Placed_Fragment extends Fragment {
         super.onStop();
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).show();
     }
+
 }

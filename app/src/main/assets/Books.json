@@ -6,6 +6,9 @@
     "description": "good book",
     "bookImage": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1494428973l/43641._SY475_.jpg",
     "bookPrice": 200.0,
+    "discount" : 50.0,
+    "bookMRP" : 250.0,
+    "rating" : 4.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -180,7 +183,10 @@
     "bookAuthor":"APJ Abdul Kalam",
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/en/3/3a/Wings_of_Fire_by_A_P_J_Abdul_Kalam_Book_Cover.jpg",
-    "bookPrice" : 250.0,
+    "bookPrice" : 240.0,
+    "discount" : 60.0,
+    "bookMRP" : 300.0,
+    "rating" : 3.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -356,6 +362,9 @@
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/en/thumb/5/54/APassageToIndia.jpg/330px-APassageToIndia.jpg",
     "bookPrice" : 400.0,
+    "discount" : 50.0,
+    "bookMRP" : 450.0,
+    "rating" : 4.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -531,6 +540,9 @@
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/en/8/8e/The_Hungry_Tide.jpg",
     "bookPrice" : 200.0,
+    "discount" : 50.0,
+    "bookMRP" : 250.0,
+    "rating" : 4.5,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -705,7 +717,10 @@
     "bookAuthor":"Stephen King",
     "description": "good book",
     "bookImage":"https://i2.wp.com/www.nerdsandbeyond.com/wp-content/uploads/2020/08/Later-book-cover.jpg?fit=844%2C1445&ssl=1",
-    "bookPrice" : 100.0,
+    "bookPrice" : 90.0,
+    "discount" : 60.0,
+    "bookMRP" : 150.0,
+    "rating" : 4.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -881,6 +896,9 @@
     "description": "good book",
     "bookImage":"https://images-na.ssl-images-amazon.com/images/I/41+IGQE26QL._SX324_BO1,204,203,200_.jpg",
     "bookPrice" : 200.0,
+    "discount" : 50.0,
+    "bookMRP" : 250.0,
+    "rating" : 3.5,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -1056,6 +1074,9 @@
     "description": "good book",
     "bookImage":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Invisible_Man_%281952_1st_ed_jacket_cover%29.jpg/330px-Invisible_Man_%281952_1st_ed_jacket_cover%29.jpg",
     "bookPrice" : 300.0,
+    "discount" : 40.0,
+    "bookMRP" : 340.0,
+    "rating" : 2.5,
     "reviewList": [
       {
         "author": "Random user 1",

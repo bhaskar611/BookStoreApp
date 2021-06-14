@@ -128,6 +128,7 @@ public class bookListFragment extends Fragment {
                 String bookAuthor = booksListAdapter.getItem(position).getBookAuthor();
                 String bookImage = booksListAdapter.getItem(position).getBookImage();
                 float bookPrice = booksListAdapter.getItem(position).getBookPrice();
+                float bookRating = booksListAdapter.getItem(position).getRating();
 
                 bookFragment = new Book_View_Fragment();
                 Bundle bundle = new Bundle();
@@ -137,14 +138,9 @@ public class bookListFragment extends Fragment {
                 bundle.putString("BookAuthor",bookAuthor);
                 bundle.putString("BookImage",bookImage);
                 bundle.putFloat("BookPrice",bookPrice);
+                bundle.putFloat("BookRating",bookRating);
 
 
-                bookFragment.setArguments(bundle);
-                bookFragment.setArguments(bundle);
-
-                bookFragment.setArguments(bundle);
-
-                bookFragment.setArguments(bundle);
                 bookFragment.setArguments(bundle);
 
 

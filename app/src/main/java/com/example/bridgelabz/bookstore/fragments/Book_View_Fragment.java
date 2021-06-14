@@ -49,7 +49,7 @@ public class Book_View_Fragment extends Fragment {
     private static final String TAG = "Book_View_Fragment";
     ImageView bookImage;
     Button add_To_Cart,addReview;
-    TextView bookTitle, bookAuthor, bookPrice;
+    TextView bookTitle, bookAuthor, bookPrice,Bookrating;
     ArrayList<Cart_Item> cart_items = new ArrayList<>();
     SharedPreference sharedPreference;
     BookRepository bookRepository;
@@ -61,6 +61,7 @@ public class Book_View_Fragment extends Fragment {
     String BookAuthor;
     String BookImage;
     float BookPrice;
+    float bookrating;
     int BookId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +82,8 @@ public class Book_View_Fragment extends Fragment {
              BookImage = getArguments().getString("BookImage");
              BookPrice = getArguments().getFloat("BookPrice");
              BookId = getArguments().getInt("BookID");
+             bookrating = getArguments().getFloat("BookRating");
+
         }
 
         bookImage = view.findViewById(R.id.BookView_Image);
@@ -88,6 +91,7 @@ public class Book_View_Fragment extends Fragment {
         bookAuthor = view.findViewById(R.id.BookView_Author);
         bookPrice = view.findViewById(R.id.BookView_Price);
         add_To_Cart = view.findViewById(R.id.Add_To_Cart);
+        Bookrating = view.findViewById(R.id.textView2);
         addReview = view.findViewById(R.id.reviewButton);
         addReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +115,7 @@ public class Book_View_Fragment extends Fragment {
                 add_To_Cart.setEnabled(false);
             }
         });
+         Bookrating.setText(String.valueOf(bookrating));
         bookTitle.setText(BookTitle);
         bookAuthor.setText(BookAuthor);
         bookPrice.setText(String.valueOf(BookPrice));

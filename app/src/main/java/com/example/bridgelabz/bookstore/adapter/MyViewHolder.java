@@ -1,6 +1,7 @@
 package com.example.bridgelabz.bookstore.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView bookTitle,bookAuthor,bookPrice;
+    TextView bookTitle,bookAuthor,bookPrice,bookrating,bookmrp,bookdiscount;
     ImageView bookImage;
     CheckBox isFavourite;
     OnBookListener onBookListener;
@@ -37,6 +38,10 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
         bookImage = itemView.findViewById(R.id.bookImage);
         isFavourite = itemView.findViewById(R.id.cartcheckbox);
         bookPrice = itemView.findViewById(R.id.bookPrice);
+        bookrating = itemView.findViewById(R.id.textView2);
+        bookmrp = itemView.findViewById(R.id.textView18);
+        bookdiscount = itemView.findViewById(R.id.textView19);
+
         sharedPreference = new SharedPreference(itemView.getContext());
         this.onBookListener = onBookListener;
         itemView.setOnClickListener(this);
@@ -52,6 +57,10 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
         bookTitle.setText(book.getBookTitle());
         bookAuthor.setText(book.getBookAuthor());
         bookPrice.setText(String.valueOf(book.getBookPrice()));
+        bookrating.setText(String.valueOf(book.getRating()));
+        bookmrp.setPaintFlags(bookmrp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+        bookmrp.setText(String.valueOf(book.getBookMRP()));
+        bookdiscount.setText(String.valueOf(book.getDiscount()));
         String imageUri = book.getBookImage();
         Glide.with(itemView.getContext())
                 .load(imageUri)

@@ -97,11 +97,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="124dp"
                 android:text="TextView"
-                android:textColor="#CC1C1C"
+                android:textColor="#322F2F"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView8" />
 
             <TextView
@@ -154,6 +152,44 @@
                 app:layout_constraintEnd_toStartOf="@+id/bookAuthor"
                 app:layout_constraintStart_toEndOf="@+id/bookImage"
                 app:layout_constraintTop_toBottomOf="@+id/bookTitle" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                android:textColor="#D32626"
+                android:textSize="24sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/bookPrice"
+                app:layout_constraintStart_toEndOf="@+id/bookPrice" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="34dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginEnd="49dp"
+                android:text="TextView"
+                android:textColor="#D50000"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="21dp"
+                android:text="off"
+                android:textColor="#00C853"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView19"
+                app:layout_constraintTop_toBottomOf="@+id/cartcheckbox" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
