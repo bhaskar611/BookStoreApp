@@ -28,6 +28,7 @@ import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
 import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
+import com.example.bridgelabz.bookstore.ui.dashBoard.DashBoardActivity;
 import com.example.bridgelabz.bookstore.util.CallBack;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,6 +51,7 @@ public class bookListFragment extends Fragment {
     Book_View_Fragment bookFragment;
     private BookRepository bookRepository;
     SharedPreference sharedPreference;
+    DashBoardActivity dashBoardActivity;
 
     @Nullable
     @Override
@@ -60,6 +62,8 @@ public class bookListFragment extends Fragment {
         int orientation = getResources().getConfiguration().orientation;
         bookRepository = new BookRepository(getContext());
         sharedPreference = new SharedPreference(this.getContext());
+        dashBoardActivity = new DashBoardActivity();
+        //dashBoardActivity.setupBadge();
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
             spanCount = 2;

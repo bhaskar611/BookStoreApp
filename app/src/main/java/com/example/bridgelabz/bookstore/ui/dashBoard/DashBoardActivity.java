@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
@@ -19,7 +21,7 @@ import com.example.bridgelabz.bookstore.fragments.bookListFragment;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
 import com.example.bridgelabz.bookstore.ui.Authentication.RegisterActivity;
 
-public class DashBoardActivity extends AppCompatActivity {
+public class DashBoardActivity extends AppCompatActivity implements AddBadge {
     SharedPreference sharedPreference;
     bookListFragment booklistFragment;
     WishListFragment wishListFragment;
@@ -27,6 +29,8 @@ public class DashBoardActivity extends AppCompatActivity {
     CartRepository cartRepository;
     Order_Fragment order_fragment;
     ProfileFragment profileFragment;
+    TextView textCartItemCount;
+    int badges;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,7 @@ public class DashBoardActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment();
         cartRepository = new CartRepository(this);
 
-        int badges = cartRepository.getCartList().size();
+         badges = cartRepository.getCartList().size();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -59,56 +63,177 @@ public class DashBoardActivity extends AppCompatActivity {
         MenuItem cartList = menu.findItem(R.id.cart);
         MenuItem orderList = menu.findItem(R.id.orders);
         MenuItem profilePage = menu.findItem(R.id.profile);
-
-
-        profilePage.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        //final MenuItem menuItem = menu.findItem(R.id.cart);
+        View actionView = cartList.getActionView();
+        View actionView1 = logout.getActionView();
+        View actionView2 = wishList.getActionView();
+        View actionView3 = orderList.getActionView();
+        View actionView4 = profilePage.getActionView();
+        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+//
+       //setupBadge();
+        actionView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        profileFragment).addToBackStack(null).commit();
-                return false;
+            public void onClick(View v) {
+                onOptionsItemSelected(cartList);
             }
         });
+//        actionView1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onOptionsItemSelected(logout);
+//            }
+//        });
+//        actionView2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onOptionsItemSelected(wishList);
+//            }
+//        });
+//        actionView3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onOptionsItemSelected(orderList);
+//            }
+//        });
+//        actionView4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onOptionsItemSelected(profilePage);
+//            }
+//        });
 
-        orderList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
 
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.cart: {
+                // Do something
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        order_fragment).addToBackStack(null).commit();
-                return false;
+                       cartFragment).addToBackStack(null).commit();
+//
+                return true;
             }
-        });
-        logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
+            case R.id.sign_out: {
+                // Do something
                 sharedPreference.setLoggedIN(false);
                 startActivity(new Intent(DashBoardActivity.this, LoginActivity.class));
-                return false;
+//
+                return true;
             }
-        });
-
-        wishList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
+            case R.id.favourites: {
+                // Do something
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         wishListFragment).addToBackStack(null).commit();
-                return false;
+//
+                return true;
             }
-        });
-
-        cartList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
+            case R.id.orders: {
+                // Do something
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        cartFragment).addToBackStack(null).commit();
-                return false;
+                       order_fragment).addToBackStack(null).commit();
+//
+                return true;
             }
-        });
-        return true;
+            case R.id.profile: {
+                // Do something
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                       profileFragment).addToBackStack(null).commit();
+//
+                return true;
+            }
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+//        profilePage.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        profileFragment).addToBackStack(null).commit();
+//                return false;
+//            }
+//        });
+//
+//        orderList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        order_fragment).addToBackStack(null).commit();
+//                return false;
+//            }
+//        });
+//        logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                sharedPreference.setLoggedIN(false);
+//                startActivity(new Intent(DashBoardActivity.this, LoginActivity.class));
+//                return false;
+//            }
+//        });
+//
+//        wishList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        wishListFragment).addToBackStack(null).commit();
+//                return false;
+//            }
+//        });
+//
+//        cartList.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        cartFragment).addToBackStack(null).commit();
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
+
+    public void setupBadge() {
+        if (textCartItemCount != null) {
+            if (badges == 0) {
+                if (textCartItemCount.getVisibility() != View.GONE) {
+                    textCartItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textCartItemCount.setText(String.valueOf(Math.min(badges, 99)));
+                if (textCartItemCount.getVisibility() != View.VISIBLE) {
+                    textCartItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onAddCart(int count) {
+
+        if (textCartItemCount != null) {
+            if (count == 0) {
+                if (textCartItemCount.getVisibility() != View.GONE) {
+                    textCartItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textCartItemCount.setText(String.valueOf(Math.min(count, 99)));
+                if (textCartItemCount.getVisibility() != View.VISIBLE) {
+                    textCartItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
     }
 }

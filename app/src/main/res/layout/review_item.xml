@@ -18,7 +18,7 @@
         android:text="@string/book_category"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="24sp" />
 
     <RatingBar
         android:id="@+id/review_user_rating"
@@ -39,5 +39,5 @@
         android:text="@string/book_detail"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
         android:textColor="@color/blue_grey_800"
-        android:textSize="15sp" />
+        android:textSize="24sp" />
 </LinearLayout>

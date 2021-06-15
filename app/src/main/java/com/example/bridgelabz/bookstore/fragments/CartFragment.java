@@ -28,6 +28,7 @@ import com.example.bridgelabz.bookstore.adapter.CartListAdapter;
 import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.User;
+import com.example.bridgelabz.bookstore.ui.dashBoard.AddBadge;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -98,6 +99,14 @@ public class CartFragment extends Fragment {
                 totalamount_Cart = cartRepository.calculateTotalPrice(updatedCart);
                 totalAmount.setText(String.valueOf(totalamount_Cart));
                 cartListAdapter.setCartBooksList(updatedCart);
+                try{
+                    ((AddBadge) requireActivity()).onAddCart(cartRepository.getCartList().size());
+//This will invoke the implemented method in your activity class. You
+//can pass any type of value through to your activity. Just add the
+//parameter in your interface declaration.
+                }catch (ClassCastException e){
+                    e.printStackTrace();
+                }
 
 //                cartListAdapter.notifyItemRemoved(position);
 //                cartListAdapter.setCartBooksList(updatedCart);
@@ -156,6 +165,7 @@ public class CartFragment extends Fragment {
             public void onClick(View v) {
                 //handle any click event
                 getParentFragmentManager().popBackStack();
+
 
             }
         });

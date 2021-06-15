@@ -94,7 +94,7 @@ public class Order_Fragment extends Fragment {
     private void onBackPressed(View view) {
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.order_toolbar);
-        toolbar.setTitle("Order Fragment");
+        toolbar.setTitle("Orders");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

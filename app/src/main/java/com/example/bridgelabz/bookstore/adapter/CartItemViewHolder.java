@@ -110,6 +110,7 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder {
                 updateUI(cart);
                 cartBookClickListener.onMinusItemQuantity(cart, cartPosition);
 
+
             }
 
         });

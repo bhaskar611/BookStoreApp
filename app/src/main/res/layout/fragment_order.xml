@@ -66,6 +66,7 @@
         android:layout_width="257dp"
         android:layout_height="72dp"
         android:text="Continue Shopping?"
+        android:background="@drawable/oval"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.896"

@@ -11,6 +11,30 @@
         android:layout_height="800dp"
         android:background="@drawable/bgpic1">
 
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="37dp"
+            android:background="@drawable/review_background"
+            android:drawableEnd="@drawable/rating"
+            android:drawableRight="@drawable/rating"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="4dp"
+            android:text="4.5"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/BookView_Author"
+            app:layout_constraintTop_toBottomOf="@+id/BookView_Title"
+            app:layout_constraintVertical_bias="0.0" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -54,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/berkshire_swash"
             android:text="TextView"
             android:textSize="24sp"
@@ -65,53 +89,31 @@
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="165dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="87dp"
-            android:layout_marginBottom="17dp"
-            android:background="@drawable/review_background"
-            android:drawableEnd="@drawable/rating"
-            android:drawableRight="@drawable/rating"
-            android:paddingStart="8dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="4dp"
-            android:text="4.5"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/review_recyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/reviewButton"
-            app:layout_constraintTop_toBottomOf="@+id/textView36" />
-
-        <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="By"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toStartOf="@+id/BookView_Author"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BookView_Title" />
 
         <TextView
             android:id="@+id/BookView_Author"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="71dp"
+            android:layout_marginStart="8dp"
             android:singleLine="false"
             android:text="TextView"
             android:textSize="18sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView40"
             app:layout_constraintStart_toEndOf="@+id/textView4" />
 
         <TextView
@@ -120,7 +122,7 @@
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/Rs"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/view2"
@@ -135,6 +137,7 @@
             android:layout_marginEnd="280dp"
             android:text="TextView"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.441"
@@ -166,7 +169,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView37"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -193,6 +196,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="1dp"
             android:text="Add To Cart"
+            android:background="@drawable/oval"
             app:layout_constraintBottom_toTopOf="@+id/view8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -248,6 +252,7 @@
             android:layout_marginEnd="301dp"
             android:layout_marginBottom="8dp"
             android:text="Review"
+            android:background="@drawable/oval"
             app:layout_constraintBottom_toTopOf="@+id/review_recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

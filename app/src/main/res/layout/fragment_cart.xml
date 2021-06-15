@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="264dp"
         android:layout_marginEnd="34dp"
+        android:background="@drawable/oval"
         android:text="CheckOut"
         app:layout_constraintBottom_toTopOf="@+id/CartList_RecyclerView"
         app:layout_constraintEnd_toEndOf="parent"

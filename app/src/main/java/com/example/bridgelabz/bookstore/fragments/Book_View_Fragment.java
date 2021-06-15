@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -32,6 +34,7 @@ import com.example.bridgelabz.bookstore.model.Cart_Item;
 import com.example.bridgelabz.bookstore.model.Review;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
 import com.example.bridgelabz.bookstore.model.User;
+import com.example.bridgelabz.bookstore.ui.dashBoard.AddBadge;
 import com.example.bridgelabz.bookstore.util.CallBack;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,12 +66,14 @@ public class Book_View_Fragment extends Fragment {
     float BookPrice;
     float bookrating;
     int BookId;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book__view_, container, false);
         cartRepository = new CartRepository(getContext());
         bookRepository = new BookRepository(getContext());
+
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         onBackPressed(view);
 
@@ -91,7 +96,7 @@ public class Book_View_Fragment extends Fragment {
         bookAuthor = view.findViewById(R.id.BookView_Author);
         bookPrice = view.findViewById(R.id.BookView_Price);
         add_To_Cart = view.findViewById(R.id.Add_To_Cart);
-        Bookrating = view.findViewById(R.id.textView2);
+        Bookrating = view.findViewById(R.id.textView40);
         addReview = view.findViewById(R.id.reviewButton);
         addReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +118,15 @@ public class Book_View_Fragment extends Fragment {
             public void onClick(View v) {
                 bookRepository.addBookToCart(BookId);
                 add_To_Cart.setEnabled(false);
+                try{
+                    ((AddBadge) getActivity()).onAddCart(cartRepository.getCartList().size());
+//This will invoke the implemented method in your activity class. You
+//can pass any type of value through to your activity. Just add the
+//parameter in your interface declaration.
+                }catch (ClassCastException e){
+                    e.printStackTrace();
+                }
+
             }
         });
          Bookrating.setText(String.valueOf(bookrating));
@@ -166,13 +180,19 @@ public class Book_View_Fragment extends Fragment {
     private void onBackPressed(View view) {
 
        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle("Book Title");
+        toolbar.setTitle(BookTitle);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //handle any click event
-                getParentFragmentManager().popBackStack();
+               // getParentFragmentManager().popBackStack();
+                Fragment fragment = new bookListFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
             });
