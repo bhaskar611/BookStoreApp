@@ -1,16 +1,9 @@
 package com.example.bridgelabz.bookstore.fragments;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,22 +11,21 @@ import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Order;
 import com.example.bridgelabz.bookstore.model.User;
+import com.example.bridgelabz.bookstore.ui.dashBoard.AddBadge;
 import com.example.bridgelabz.bookstore.workManager.MyWorker;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +39,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
-public class Order_Placed_Fragment extends Fragment {
+public class OrderPlacedFragment extends Fragment {
 
     TextView orderPlaced,dateTime;
     Button cont_Shopping;
@@ -72,7 +64,8 @@ public class Order_Placed_Fragment extends Fragment {
         calendar = Calendar.getInstance();
         //orderid + date + time
         sharedPreference = new SharedPreference(this.getContext());
-        cartRepository = new CartRepository(this.getContext());
+        File reviewsFile = new File(getContext().getFilesDir(), "reviews.json");
+        cartRepository = new CartRepository(getContext(),new ReviewRepository(reviewsFile));
         orderNo = System.currentTimeMillis();
         orderPlaced.setText(String.valueOf(orderNo) );
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -92,8 +85,16 @@ public class Order_Placed_Fragment extends Fragment {
         cont_Shopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
+                    ((AddBadge) requireActivity()).onAddCart(0);
+                    //This will invoke the implemented method in your activity class. You
+                    //can pass any type of value through to your activity. Just add the
+                    //parameter in your interface declaration.
+                }catch (ClassCastException e){
+                    e.printStackTrace();
+                }
                 loaddata();
-                Fragment fragment = new bookListFragment();
+                Fragment fragment = new BookListFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);

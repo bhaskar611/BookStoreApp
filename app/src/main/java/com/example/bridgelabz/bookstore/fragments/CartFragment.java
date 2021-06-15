@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.CartBookClickListener;
 import com.example.bridgelabz.bookstore.adapter.CartListAdapter;
@@ -56,8 +57,10 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        cartRepository = new CartRepository(getContext());
-        bookRepository = new BookRepository(getContext());
+        File reviewsFile = new File(getContext().getFilesDir(), "reviews.json");
+        cartRepository = new CartRepository(getContext(),new ReviewRepository(reviewsFile));
+
+        bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
         List<CartModel> cartItemBooks = cartRepository.getCartList();
       totalAmount = view.findViewById(R.id.textView25);
 
@@ -99,14 +102,14 @@ public class CartFragment extends Fragment {
                 totalamount_Cart = cartRepository.calculateTotalPrice(updatedCart);
                 totalAmount.setText(String.valueOf(totalamount_Cart));
                 cartListAdapter.setCartBooksList(updatedCart);
-                try{
-                    ((AddBadge) requireActivity()).onAddCart(cartRepository.getCartList().size());
-//This will invoke the implemented method in your activity class. You
-//can pass any type of value through to your activity. Just add the
-//parameter in your interface declaration.
-                }catch (ClassCastException e){
-                    e.printStackTrace();
-                }
+                    try{
+                        ((AddBadge) requireActivity()).onAddCart(cartRepository.getCartList().size());
+    //This will invoke the implemented method in your activity class. You
+    //can pass any type of value through to your activity. Just add the
+    //parameter in your interface declaration.
+                    }catch (ClassCastException e){
+                        e.printStackTrace();
+                    }
 
 //                cartListAdapter.notifyItemRemoved(position);
 //                cartListAdapter.setCartBooksList(updatedCart);
@@ -146,7 +149,7 @@ public class CartFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }else{
-            Fragment fragment = new Pick_Address_Fragment();
+            Fragment fragment = new PickAddressFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);

@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Order_Fragment extends Fragment {
+public class OrderFragment extends Fragment {
 
     Order order;
     long orderID;

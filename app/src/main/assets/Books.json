@@ -8,7 +8,6 @@
     "bookPrice": 200.0,
     "discount" : 50.0,
     "bookMRP" : 250.0,
-    "rating" : 4.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -186,7 +185,6 @@
     "bookPrice" : 240.0,
     "discount" : 60.0,
     "bookMRP" : 300.0,
-    "rating" : 3.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -364,7 +362,6 @@
     "bookPrice" : 400.0,
     "discount" : 50.0,
     "bookMRP" : 450.0,
-    "rating" : 4.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -542,7 +539,6 @@
     "bookPrice" : 200.0,
     "discount" : 50.0,
     "bookMRP" : 250.0,
-    "rating" : 4.5,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -720,7 +716,6 @@
     "bookPrice" : 90.0,
     "discount" : 60.0,
     "bookMRP" : 150.0,
-    "rating" : 4.0,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -898,7 +893,6 @@
     "bookPrice" : 200.0,
     "discount" : 50.0,
     "bookMRP" : 250.0,
-    "rating" : 3.5,
     "reviewList": [
       {
         "author": "Random user 1",
@@ -1076,7 +1070,6 @@
     "bookPrice" : 300.0,
     "discount" : 40.0,
     "bookMRP" : 340.0,
-    "rating" : 2.5,
     "reviewList": [
       {
         "author": "Random user 1",

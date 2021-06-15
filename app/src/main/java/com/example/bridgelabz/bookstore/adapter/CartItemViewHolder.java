@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.model.CartModel;
 
+import java.io.File;
 import java.math.BigDecimal;
 
 public class CartItemViewHolder extends RecyclerView.ViewHolder {
@@ -26,6 +28,8 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder {
     private int cartPosition = 0;
     private CartModel cart;
     private CartBookClickListener cartBookClickListener;
+   // File reviewsFile = new File(getContext().getFilesDir(), "reviews.json");
+    //bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
 
 
     public CartItemViewHolder(@NonNull View itemView, CartBookClickListener cartBookClickListener) {
@@ -38,7 +42,7 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder {
         addBook = itemView.findViewById(R.id.imageView2);
         removeBook = itemView.findViewById(R.id.imageView);
         sharedPreference = new SharedPreference(itemView.getContext());
-        bookRepository = new BookRepository(itemView.getContext());
+       // bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
         this.cartBookClickListener = cartBookClickListener;
 
     }

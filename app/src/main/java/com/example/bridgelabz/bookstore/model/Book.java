@@ -17,7 +17,7 @@ public class Book {
     private float discount;
     private float rating;
 
-    public Book(int bookID,String bookTitle,String bookAuthor,String description,String bookImage,float bookPrice,boolean isCarted, boolean isFavourite,List<Review> reviewList,float bookMRP,float discount,float rating) {
+    public Book(int bookID,String bookTitle,String bookAuthor,String description,String bookImage,float bookPrice,boolean isCarted, boolean isFavourite,List<Review> reviewList,float bookMRP,float discount/*,float rating*/) {
 
         this.bookID = bookID;
         this.bookTitle = bookTitle;
@@ -30,7 +30,7 @@ public class Book {
         this.reviewList = reviewList;
         this.bookMRP = bookMRP;
         this.discount = discount;
-        this.rating = rating;
+        //this.rating = rating;
 
     }
     public float getBookMRP() {
@@ -83,7 +83,7 @@ public class Book {
         this.reviewList = bookResponseModel.getReviewList();
         this.bookMRP = bookResponseModel.getBookMRP();
         this.discount = bookResponseModel.getDiscount();
-        this.rating = bookResponseModel.getRating();
+        //this.rating = bookResponseModel.getRating();
     }
 
     public boolean isFavourite() {

@@ -26,7 +26,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,7 +79,7 @@ public class AddressFragment extends Fragment {
                     jsonParseException.printStackTrace();
                 }
 
-                Fragment fragment = new Pick_Address_Fragment();
+                Fragment fragment = new PickAddressFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);

@@ -12,6 +12,7 @@ import com.example.bridgelabz.bookstore.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,13 @@ public class CartRepository {
     private Context context;
     private SharedPreference sharedPreference;
     private BookRepository bookRepository;
+    private ReviewRepository reviewRepository;
 
-    public CartRepository(Context context) {
+
+    public CartRepository(Context context,ReviewRepository reviewRepository) {
         this.context = context;
         sharedPreference = new SharedPreference(context);
-        bookRepository = new BookRepository(context);
+        bookRepository = new BookRepository(context, reviewRepository);
     }
 
     public List<CartModel> getCartList()  {

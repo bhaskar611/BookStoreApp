@@ -12,22 +12,24 @@ import android.widget.TextView;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.fragments.CartFragment;
-import com.example.bridgelabz.bookstore.fragments.Order_Fragment;
+import com.example.bridgelabz.bookstore.fragments.OrderFragment;
 import com.example.bridgelabz.bookstore.fragments.ProfileFragment;
 import com.example.bridgelabz.bookstore.fragments.WishListFragment;
-import com.example.bridgelabz.bookstore.fragments.bookListFragment;
+import com.example.bridgelabz.bookstore.fragments.BookListFragment;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
-import com.example.bridgelabz.bookstore.ui.Authentication.RegisterActivity;
+
+import java.io.File;
 
 public class DashBoardActivity extends AppCompatActivity implements AddBadge {
     SharedPreference sharedPreference;
-    bookListFragment booklistFragment;
+    BookListFragment booklistFragment;
     WishListFragment wishListFragment;
     CartFragment cartFragment;
     CartRepository cartRepository;
-    Order_Fragment order_fragment;
+    OrderFragment order_fragment;
     ProfileFragment profileFragment;
     TextView textCartItemCount;
     int badges;
@@ -37,12 +39,14 @@ public class DashBoardActivity extends AppCompatActivity implements AddBadge {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
         sharedPreference = new SharedPreference(this);
-        booklistFragment = new bookListFragment();
+        booklistFragment = new BookListFragment();
         wishListFragment = new WishListFragment();
         cartFragment = new CartFragment();
-        order_fragment = new Order_Fragment();
+        order_fragment = new OrderFragment();
         profileFragment = new ProfileFragment();
-        cartRepository = new CartRepository(this);
+        File reviewsFile = new File(getFilesDir(), "reviews.json");
+
+        cartRepository = new CartRepository(this,new ReviewRepository(reviewsFile));
 
          badges = cartRepository.getCartList().size();
 

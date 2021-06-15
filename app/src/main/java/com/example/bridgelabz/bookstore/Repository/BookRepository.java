@@ -25,10 +25,12 @@ public class BookRepository {
     private Context context;
     private static final String TAG = "BookRepository";
     private SharedPreference sharedPreference;
+    private ReviewRepository reviewRepository;
 
-    public BookRepository(Context context) {
+    public BookRepository(Context context,ReviewRepository reviewRepository) {
         this.context = context;
         sharedPreference = new SharedPreference(context);
+        this.reviewRepository = reviewRepository;
     }
 
     public String loadBookJSON() {
@@ -60,7 +62,9 @@ public class BookRepository {
             List<Integer> favoriteBookIds = user.getFavouriteItemsList();
             for (BookResponseModel bookResponseModel : bookResponseModels) {
                 Book favouriteBook = new Book(bookResponseModel);
+                float rating = reviewRepository.getAverageRating(bookResponseModel.getBookID());
                 favouriteBook.setFavourite(favoriteBookIds.contains(bookResponseModel.getBookID()));
+                favouriteBook.setRating(rating);
                 bookList.add(favouriteBook);
             }
         } catch (IOException e) {

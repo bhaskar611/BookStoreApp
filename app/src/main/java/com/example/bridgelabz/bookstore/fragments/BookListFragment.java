@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 //import com.example.bridgelabz.bookstore.dataManager.BookListManager;
@@ -39,9 +40,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
-public class bookListFragment extends Fragment {
+public class BookListFragment extends Fragment {
 
     private BookListAdapter booksListAdapter;
     private static final String TAG = "BooksListFragment";
@@ -53,6 +55,7 @@ public class bookListFragment extends Fragment {
     SharedPreference sharedPreference;
     DashBoardActivity dashBoardActivity;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,9 +63,11 @@ public class bookListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_booklist, container, false);
 //        final GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
         int orientation = getResources().getConfiguration().orientation;
-        bookRepository = new BookRepository(getContext());
+        File reviewsFile = new File(getContext().getFilesDir(), "reviews.json");
+        bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
         sharedPreference = new SharedPreference(this.getContext());
         dashBoardActivity = new DashBoardActivity();
+
         //dashBoardActivity.setupBadge();
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
@@ -100,9 +105,28 @@ public class bookListFragment extends Fragment {
             long reviewID = System.currentTimeMillis();
             File file = new File(getContext().getFilesDir(), "reviews.json");
             List<ReviewModel> reviewList = new ArrayList<ReviewModel>();
+
             int userID = sharedPreference.getPresentUserId();
             ReviewModel review = new ReviewModel(userName, userID, reviewID, BookId, userRating, userReview);
             reviewList.add(review);
+            Random random = new Random();
+            int max = 5;
+            int min = 1;
+            //int randomInt = random.nextInt((max - min) + 1) + min;
+            for (int i =1;i<8;i++){
+                for (int j=1;j<11;j++){
+
+                    userName ="random user " + j;
+                    userID = j;
+                    reviewID = System.currentTimeMillis();
+                    BookId = i;
+                    userRating = min + random.nextFloat() * (max - min);
+                    userReview = "Excellent Book";
+                    review = new ReviewModel(userName, userID, reviewID, BookId, userRating, userReview);
+                    reviewList.add(review);
+
+                }
+            }
             if (file.exists()) {
 
             } else {

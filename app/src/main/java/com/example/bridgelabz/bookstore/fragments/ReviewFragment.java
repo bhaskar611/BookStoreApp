@@ -1,7 +1,6 @@
 package com.example.bridgelabz.bookstore.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,20 +18,14 @@ import android.widget.RatingBar;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
-import com.example.bridgelabz.bookstore.model.Address;
-import com.example.bridgelabz.bookstore.model.CartResponseModel;
-import com.example.bridgelabz.bookstore.model.Order;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
 import com.example.bridgelabz.bookstore.model.User;
-import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
-import com.example.bridgelabz.bookstore.ui.Authentication.RegisterActivity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +91,7 @@ public class ReviewFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Fragment fragment = new bookListFragment();
+                Fragment fragment = new BookListFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);

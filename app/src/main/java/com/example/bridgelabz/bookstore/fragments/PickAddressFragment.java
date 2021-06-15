@@ -19,7 +19,6 @@ import android.widget.Button;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.Address_Pick_Adapter;
-import com.example.bridgelabz.bookstore.adapter.CartListAdapter;
 import com.example.bridgelabz.bookstore.adapter.OnAddressListener;
 import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.User;
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Pick_Address_Fragment extends Fragment {
+public class PickAddressFragment extends Fragment {
 
     SharedPreference sharedPreference;
     RecyclerView recyclerView;
@@ -89,7 +88,7 @@ public class Pick_Address_Fragment extends Fragment {
         address_pick_adapter = new Address_Pick_Adapter(addressList, new OnAddressListener() {
             @Override
             public void onAddressClick(int position, View viewHolder) {
-                Fragment fragment = new Order_Placed_Fragment();
+                Fragment fragment = new OrderPlacedFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);

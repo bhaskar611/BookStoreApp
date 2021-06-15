@@ -17,10 +17,12 @@ import android.widget.Toast;
 
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
 import com.example.bridgelabz.bookstore.model.Book;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -37,7 +39,9 @@ public class WishListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_wish_list, container, false);
-        bookRepository = new BookRepository(getContext());
+
+        File reviewsFile = new File(getContext().getFilesDir(), "reviews.json");
+        bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
         ArrayList<Book> favourites = bookRepository.getFavoriteBooks();
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {

@@ -1,6 +1,5 @@
 package com.example.bridgelabz.bookstore.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,22 +22,16 @@ import com.bumptech.glide.Glide;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
+import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
-import com.example.bridgelabz.bookstore.adapter.Address_Pick_Adapter;
 import com.example.bridgelabz.bookstore.adapter.ReviewAdapter;
-import com.example.bridgelabz.bookstore.model.Book;
-import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Cart_Item;
-import com.example.bridgelabz.bookstore.model.Review;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
-import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.ui.dashBoard.AddBadge;
-import com.example.bridgelabz.bookstore.util.CallBack;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,8 +62,10 @@ public class Book_View_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book__view_, container, false);
-        cartRepository = new CartRepository(getContext());
-        bookRepository = new BookRepository(getContext());
+        File reviewsFile = new File(getContext().getFilesDir(), "reviews.json");
+
+        cartRepository = new CartRepository(getContext(),new ReviewRepository(reviewsFile));
+        bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
 
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         onBackPressed(view);
@@ -187,7 +180,7 @@ public class Book_View_Fragment extends Fragment {
             public void onClick(View v) {
                 //handle any click event
                // getParentFragmentManager().popBackStack();
-                Fragment fragment = new bookListFragment();
+                Fragment fragment = new BookListFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, fragment);
