@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         findViews();
@@ -41,12 +43,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void findViews() {
-        emailId = findViewById(R.id.et_email);
-        passwordId = findViewById(R.id.et_password);
-        cnfrmPassword=findViewById(R.id.et_repassword);
+        emailId = findViewById(R.id.editTextEmail);
+        passwordId = findViewById(R.id.editTextPassword);
+        cnfrmPassword=findViewById(R.id.editTextRePassword);
         btnSignUp = findViewById(R.id.btn_register);
         textViewSignIn = findViewById(R.id.sigin);
-        nameId = findViewById(R.id.et_name);
+        nameId = findViewById(R.id.editTextName);
         sharedPreference = new SharedPreference(this);
     }
 
@@ -99,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
             passwordId.requestFocus();
             return false;
         } else if (!password.matches("(^(?=.*[A-Z]))(?=.*[0-9])(?=.*[a-z])(?=.*[@*&^%#-*+!]{1}).{8,}$")) {
-            passwordId.setError("Password should contain atleast one numeric and one special character");
+            passwordId.setError("Password should contain at least one numeric and one special character");
             passwordId.requestFocus();
             return false;
         } else if (!password.equals(confirmPassword)) {
@@ -160,6 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
                     fos.write(jsonStr.getBytes());
                     fos.close();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
                 }
                 else {
                     jsonStr = mapper.writeValueAsString(userList);
@@ -167,6 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                     fos.write(jsonStr.getBytes());
                     fos.close();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
                 }
 
 

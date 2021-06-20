@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Book_View_Fragment extends Fragment {
@@ -122,7 +123,7 @@ public class Book_View_Fragment extends Fragment {
 
             }
         });
-         Bookrating.setText(String.valueOf(bookrating));
+        Bookrating.setText((String.format(Locale.getDefault(),"%.1f", bookrating)));
         bookTitle.setText(BookTitle);
         bookAuthor.setText(BookAuthor);
         bookPrice.setText(String.valueOf(BookPrice));
@@ -179,13 +180,13 @@ public class Book_View_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //handle any click event
-               // getParentFragmentManager().popBackStack();
-                Fragment fragment = new BookListFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                getParentFragmentManager().popBackStack();
+//                Fragment fragment = new BookListFragment();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
 
             }
             });

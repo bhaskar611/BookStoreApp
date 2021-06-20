@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void findViews() {
-        emailId = findViewById(R.id.et_email);
-        passwordId = findViewById(R.id.et_password);
+        emailId = findViewById(R.id.editTextUserEmail);
+        passwordId = findViewById(R.id.editTextUserPassword);
         btnSignIn = findViewById(R.id.btn_login);
         textViewSignUp = findViewById(R.id.signUp);
         sharedPreference = new SharedPreference(this);
@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 sharedPreference.setLoggedIN(true);
                 sharedPreference.setPresentUserId(i);
                 startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+                finish();
 
             }
             else {

@@ -26,6 +26,7 @@ import com.example.bridgelabz.bookstore.model.CartResponseModel;
 import com.example.bridgelabz.bookstore.model.Order;
 import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.ui.dashBoard.AddBadge;
+import com.example.bridgelabz.bookstore.ui.dashBoard.DashBoardActivity;
 import com.example.bridgelabz.bookstore.workManager.MyWorker;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -94,12 +95,12 @@ public class OrderPlacedFragment extends Fragment {
                     e.printStackTrace();
                 }
                 loaddata();
-                Fragment fragment = new BookListFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                AppCompatActivity activity = ((AppCompatActivity) getActivity());
+                if(activity != null) {
+                    activity.getSupportFragmentManager()
+                            .popBackStack(DashBoardActivity.BACK_STACK_TAG_CART_FLOW,
+                                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
             }
         });
 

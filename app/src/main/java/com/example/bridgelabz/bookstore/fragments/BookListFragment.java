@@ -25,6 +25,7 @@ import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 //import com.example.bridgelabz.bookstore.dataManager.BookListManager;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
+import com.example.bridgelabz.bookstore.adapter.OnFavoriteChangeListener;
 import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
 import com.example.bridgelabz.bookstore.model.User;
@@ -113,7 +114,7 @@ public class BookListFragment extends Fragment {
             int max = 5;
             int min = 1;
             //int randomInt = random.nextInt((max - min) + 1) + min;
-            for (int i =1;i<8;i++){
+            for (int i =1;i<bookRepository.getBookList().size();i++){
                 for (int j=1;j<11;j++){
 
                     userName ="random user " + j;
@@ -121,7 +122,13 @@ public class BookListFragment extends Fragment {
                     reviewID = System.currentTimeMillis();
                     BookId = i;
                     userRating = min + random.nextFloat() * (max - min);
-                    userReview = "Excellent Book";
+                    if (userRating >= 4){
+                        userReview = "Excellent Book";
+                    } else if (userRating < 4 && userRating >=3){
+                        userReview = "Good Book";
+                    }else {
+                        userReview = "I dont like this Book";
+                    }
                     review = new ReviewModel(userName, userID, reviewID, BookId, userRating, userReview);
                     reviewList.add(review);
 
@@ -162,11 +169,11 @@ public class BookListFragment extends Fragment {
                 Bundle bundle = new Bundle();
 
                 bundle.putInt("BookID", bookId);
-                bundle.putString("BookTitle",bookTitle);
-                bundle.putString("BookAuthor",bookAuthor);
-                bundle.putString("BookImage",bookImage);
-                bundle.putFloat("BookPrice",bookPrice);
-                bundle.putFloat("BookRating",bookRating);
+                bundle.putString("BookTitle", bookTitle);
+                bundle.putString("BookAuthor", bookAuthor);
+                bundle.putString("BookImage", bookImage);
+                bundle.putFloat("BookPrice", bookPrice);
+                bundle.putFloat("BookRating", bookRating);
 
 
                 bookFragment.setArguments(bundle);
@@ -175,6 +182,11 @@ public class BookListFragment extends Fragment {
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, bookFragment)
                         .addToBackStack(null).commit();
+            }
+        }, new OnFavoriteChangeListener() {
+            @Override
+            public void onUnchecked(Book book, int position) {
+                Toast.makeText(getContext(),"Book is removed from WishList",Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(booksListAdapter);

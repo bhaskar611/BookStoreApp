@@ -79,12 +79,7 @@ public class AddressFragment extends Fragment {
                     jsonParseException.printStackTrace();
                 }
 
-                Fragment fragment = new PickAddressFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+              getParentFragmentManager().popBackStack();
             }
         });
         onBackPressed(view);

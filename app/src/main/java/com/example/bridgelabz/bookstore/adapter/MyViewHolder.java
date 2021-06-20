@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -29,9 +30,10 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     ImageView bookImage;
     CheckBox isFavourite;
     OnBookListener onBookListener;
+    OnFavoriteChangeListener onFavoriteChangeListener;
     SharedPreference sharedPreference;
 
-    public MyViewHolder(@NonNull View itemView,OnBookListener onBookListener) {
+    public MyViewHolder(@NonNull View itemView,OnBookListener onBookListener, OnFavoriteChangeListener onFavoriteChangeListener) {
         super(itemView);
         bookTitle = itemView.findViewById(R.id.bookTitle);
         bookAuthor = itemView.findViewById(R.id.bookAuthor);
@@ -44,6 +46,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
 
         sharedPreference = new SharedPreference(itemView.getContext());
         this.onBookListener = onBookListener;
+        this.onFavoriteChangeListener = onFavoriteChangeListener;
         itemView.setOnClickListener(this);
     }
 
@@ -57,7 +60,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
         bookTitle.setText(book.getBookTitle());
         bookAuthor.setText(book.getBookAuthor());
         bookPrice.setText(String.valueOf(book.getBookPrice()));
-        bookrating.setText(String.valueOf(book.getRating()));
+        bookrating.setText(String.format(Locale.getDefault(),"%.1f", book.getRating()));
         bookmrp.setPaintFlags(bookmrp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
         bookmrp.setText(String.valueOf(book.getBookMRP()));
         bookdiscount.setText(String.valueOf(book.getDiscount()));
@@ -67,7 +70,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
                 .into(bookImage);
 
     }
-    public void favouriteChanged(Book book, boolean isChecked) {
+
+    public void favouriteChanged(Book book, boolean isChecked,int position) {
         ObjectMapper mapper = new ObjectMapper();
         if(isChecked) {
             try {
@@ -100,6 +104,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
             } catch (IOException | IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
+
+            onFavoriteChangeListener.onUnchecked(book, position);
         }
     }
 

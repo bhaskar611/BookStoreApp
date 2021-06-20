@@ -36,15 +36,17 @@ public class BookListAdapter extends RecyclerView.Adapter<MyViewHolder> {
     Book_Wish_Item book_wish_item = new Book_Wish_Item();
     private ArrayList<Book_Wish_Item> book_wish_items = new ArrayList<Book_Wish_Item>();
     private OnBookListener onBookListener;
+    private  OnFavoriteChangeListener onFavoriteChangeListener;
 
 
     WishListFragment wishListFragment = new WishListFragment();
 
-    public BookListAdapter(ArrayList<Book> booksList,OnBookListener onBookListener) {
+    public BookListAdapter(ArrayList<Book> booksList,OnBookListener onBookListener,OnFavoriteChangeListener onFavoriteChangeListener) {
 
         this.booksList = booksList;
 //        this.context = context;
-        this.onBookListener=onBookListener;
+        this.onBookListener = onBookListener;
+        this.onFavoriteChangeListener = onFavoriteChangeListener;
 //        ,Context context,OnBookListener onBookListener
 
     }
@@ -54,7 +56,7 @@ public class BookListAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.booklist,parent,false);
-        return new MyViewHolder(view,onBookListener);
+        return new MyViewHolder(view,onBookListener,onFavoriteChangeListener);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class BookListAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.isFavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                holder.favouriteChanged(book,isChecked);
+                holder.favouriteChanged(book,isChecked,position);
             }
         });
 
@@ -81,6 +83,11 @@ public class BookListAdapter extends RecyclerView.Adapter<MyViewHolder> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void removeAt(Book book, int position) {
+        booksList.remove(book);
+        notifyItemRemoved(position);
     }
 
 }

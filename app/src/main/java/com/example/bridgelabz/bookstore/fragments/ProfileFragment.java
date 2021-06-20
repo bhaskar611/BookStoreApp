@@ -64,6 +64,7 @@ public class ProfileFragment extends Fragment {
         }
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        userAddress = view.findViewById(R.id.addAddressButton);
         userName = view.findViewById(R.id.profileName);
         userEmail = view.findViewById(R.id.profileEmail);
         userPic = view.findViewById(R.id.view4);
@@ -71,6 +72,17 @@ public class ProfileFragment extends Fragment {
         String username = null;
         String useremail = null;
         String userImage = null;
+        userAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new AddressFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         userPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,68 +26,110 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/et_name"
+            app:boxCornerRadiusBottomEnd="26dp"
+            app:boxCornerRadiusBottomStart="26dp"
+            app:boxCornerRadiusTopEnd="26dp"
+            app:boxCornerRadiusTopStart="26dp"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="75dp"
             android:layout_marginTop="57dp"
             android:layout_marginEnd="75dp"
-            android:background="@drawable/et_custom"
+            app:boxBackgroundColor="@color/white"
             android:fontFamily="@font/roboto_regular"
             android:hint="your name"
             android:inputType="textPersonName"
-            android:padding="15dp"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_logo" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_logo" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/et_email"
+            app:boxCornerRadiusBottomEnd="26dp"
+            app:boxCornerRadiusBottomStart="26dp"
+            app:boxCornerRadiusTopEnd="26dp"
+            app:boxCornerRadiusTopStart="26dp"
+            app:boxBackgroundColor="@color/white"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
             android:hint="e mail"
             android:inputType="textEmailAddress"
-            android:padding="15dp"
+
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/et_name"
             app:layout_constraintStart_toStartOf="@+id/et_name"
-            app:layout_constraintTop_toBottomOf="@+id/et_name" />
+            app:layout_constraintTop_toBottomOf="@+id/et_name" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmail"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusBottomEnd="26dp"
+            app:boxCornerRadiusBottomStart="26dp"
+            app:boxCornerRadiusTopEnd="26dp"
+            app:boxCornerRadiusTopStart="26dp"
+            app:boxBackgroundColor="@color/white"
             android:id="@+id/et_password"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
             android:hint="password"
-            android:inputType="textPassword"
-            android:padding="15dp"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/et_email"
             app:layout_constraintStart_toStartOf="@+id/et_email"
-            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+            app:layout_constraintTop_toBottomOf="@+id/et_email" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            app:boxCornerRadiusBottomEnd="26dp"
+            app:boxCornerRadiusBottomStart="26dp"
+            app:boxCornerRadiusTopEnd="26dp"
+            app:boxCornerRadiusTopStart="26dp"
+            app:boxBackgroundColor="@color/white"
             android:id="@+id/et_repassword"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
             android:hint="retype password"
-            android:inputType="textPassword"
-            android:padding="15dp"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/et_password"
             app:layout_constraintStart_toStartOf="@+id/et_password"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+            app:layout_constraintTop_toBottomOf="@+id/et_password" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextRePassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"

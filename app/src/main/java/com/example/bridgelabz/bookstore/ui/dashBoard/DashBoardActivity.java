@@ -32,6 +32,7 @@ public class DashBoardActivity extends AppCompatActivity implements AddBadge {
     OrderFragment order_fragment;
     ProfileFragment profileFragment;
     TextView textCartItemCount;
+    public static final String BACK_STACK_TAG_CART_FLOW = "cart_fragment_call";
     int badges;
 
     @Override
@@ -119,7 +120,7 @@ public class DashBoardActivity extends AppCompatActivity implements AddBadge {
             case R.id.cart: {
                 // Do something
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                       cartFragment).addToBackStack(null).commit();
+                        cartFragment).addToBackStack(BACK_STACK_TAG_CART_FLOW).commit();
 //
                 return true;
             }

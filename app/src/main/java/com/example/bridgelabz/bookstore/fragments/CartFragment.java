@@ -132,30 +132,13 @@ public class CartFragment extends Fragment {
 
     private void checkOutCart() {
 
-        ObjectMapper mapper = new ObjectMapper();
-        List<User> userList1 = null;
-        try {
-            userList1 = mapper.readValue(new File(getContext().getFilesDir(),
-                    "Users.json"), new TypeReference<List<User>>(){});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        List<Address> userAddress = userList1.get(sharedPreference.getPresentUserId()).getUserAddress();
-        if(userAddress.size() == 0){
-            Fragment fragment = new AddressFragment();
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }else{
             Fragment fragment = new PickAddressFragment();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-        }
+
     }
 
     private void onBackPressed(View view) {

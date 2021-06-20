@@ -12,6 +12,8 @@ import com.example.bridgelabz.bookstore.model.Address;
 import com.example.bridgelabz.bookstore.model.Review;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
 
+import java.util.Locale;
+
 public class ReviewViewHolder extends RecyclerView.ViewHolder {
     TextView reviewuser,reviewdetails;
     RatingBar reviewrating;

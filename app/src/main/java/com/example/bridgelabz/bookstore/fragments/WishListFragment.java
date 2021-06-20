@@ -20,6 +20,7 @@ import com.example.bridgelabz.bookstore.Repository.BookRepository;
 import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.adapter.BookListAdapter;
 import com.example.bridgelabz.bookstore.adapter.OnBookListener;
+import com.example.bridgelabz.bookstore.adapter.OnFavoriteChangeListener;
 import com.example.bridgelabz.bookstore.model.Book;
 
 import java.io.File;
@@ -59,6 +60,11 @@ public class WishListFragment extends Fragment {
             @Override
             public void onBookClick(int position, View viewHolder) {
                 Toast.makeText(getContext(), "Book is in Favourite List", Toast.LENGTH_SHORT).show();
+            }
+        }, new OnFavoriteChangeListener() {
+            @Override
+            public void onUnchecked(Book book, int position) {
+                booksListAdapter.removeAt(book,position);
             }
         });
         recyclerView.setAdapter(booksListAdapter);
