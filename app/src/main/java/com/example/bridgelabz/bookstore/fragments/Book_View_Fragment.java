@@ -25,6 +25,7 @@ import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.adapter.ReviewAdapter;
+import com.example.bridgelabz.bookstore.model.Book;
 import com.example.bridgelabz.bookstore.model.Cart_Item;
 import com.example.bridgelabz.bookstore.model.ReviewModel;
 import com.example.bridgelabz.bookstore.ui.dashBoard.AddBadge;
@@ -51,6 +52,7 @@ public class Book_View_Fragment extends Fragment {
     CartRepository cartRepository;
     RecyclerView recyclerView;
     private ReviewAdapter reviewAdapter;
+   private Book book;
     ReviewFragment reviewFragment;
     String BookTitle;
     String BookAuthor;
@@ -67,13 +69,9 @@ public class Book_View_Fragment extends Fragment {
 
         cartRepository = new CartRepository(getContext(),new ReviewRepository(reviewsFile));
         bookRepository = new BookRepository(getContext(),new ReviewRepository(reviewsFile));
-
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        findViews(view);
         onBackPressed(view);
-
-        // Inflate the layout for this fragment
-
-        //assert getArguments() != null;
         Bundle bundle = this.getArguments();
         if (bundle != null) {
              BookTitle = getArguments().getString("BookTitle");
@@ -85,13 +83,7 @@ public class Book_View_Fragment extends Fragment {
 
         }
 
-        bookImage = view.findViewById(R.id.BookView_Image);
-        bookTitle = view.findViewById(R.id.BookView_Title);
-        bookAuthor = view.findViewById(R.id.BookView_Author);
-        bookPrice = view.findViewById(R.id.BookView_Price);
-        add_To_Cart = view.findViewById(R.id.Add_To_Cart);
-        Bookrating = view.findViewById(R.id.textView40);
-        addReview = view.findViewById(R.id.reviewButton);
+
         addReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,9 +106,6 @@ public class Book_View_Fragment extends Fragment {
                 add_To_Cart.setEnabled(false);
                 try{
                     ((AddBadge) getActivity()).onAddCart(cartRepository.getCartList().size());
-//This will invoke the implemented method in your activity class. You
-//can pass any type of value through to your activity. Just add the
-//parameter in your interface declaration.
                 }catch (ClassCastException e){
                     e.printStackTrace();
                 }
@@ -170,24 +159,30 @@ public class Book_View_Fragment extends Fragment {
         return view;
     }
 
+    private void findViews(View view) {
+        bookImage = view.findViewById(R.id.BookView_Image);
+        bookTitle = view.findViewById(R.id.BookView_Title);
+        bookAuthor = view.findViewById(R.id.BookView_Author);
+        bookPrice = view.findViewById(R.id.BookView_Price);
+        add_To_Cart = view.findViewById(R.id.Add_To_Cart);
+        Bookrating = view.findViewById(R.id.textView40);
+        addReview = view.findViewById(R.id.reviewButton);
+    }
+
 
     private void onBackPressed(View view) {
 
        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle(BookTitle);
+//        book = new Book();
+//       book = bookRepository.getBook(BookId);
+        BookId = getArguments().getInt("BookID");
+        toolbar.setTitle( bookRepository.getBook(BookId).getBookTitle());
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //handle any click event
                 getParentFragmentManager().popBackStack();
-//                Fragment fragment = new BookListFragment();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragment_container, fragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-
             }
             });
     }

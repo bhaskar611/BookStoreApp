@@ -17,16 +17,19 @@ import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     List<Order> orderList = new ArrayList<>();
+    private OnOrderListner onOrderListner;
 
-    public OrderAdapter(List<Order> orderList){
+    public OrderAdapter(List<Order> orderList,OnOrderListner onOrderListner)
+    {
         this.orderList = orderList;
+        this.onOrderListner = onOrderListner;
     }
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.order_book_item, parent, false);
-        return new OrderViewHolder(view);
+        return new OrderViewHolder(view,onOrderListner);
     }
 
     @Override

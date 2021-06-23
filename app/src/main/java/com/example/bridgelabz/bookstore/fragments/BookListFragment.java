@@ -114,7 +114,7 @@ public class BookListFragment extends Fragment {
             int max = 5;
             int min = 1;
             //int randomInt = random.nextInt((max - min) + 1) + min;
-            for (int i =1;i<bookRepository.getBookList().size();i++){
+            for (int i =1;i<8;i++){
                 for (int j=1;j<11;j++){
 
                     userName ="random user " + j;

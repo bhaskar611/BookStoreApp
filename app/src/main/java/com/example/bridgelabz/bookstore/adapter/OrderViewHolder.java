@@ -11,16 +11,19 @@ import com.bumptech.glide.Glide;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.model.Order;
 
-public class OrderViewHolder  extends RecyclerView.ViewHolder{
+public class OrderViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
     TextView orderID,bookTitle;
     ImageView bookPic;
     TextView date;
-    public OrderViewHolder(@NonNull View itemView) {
+    OnOrderListner onOrderListner;
+    public OrderViewHolder(@NonNull View itemView,OnOrderListner onOrderListner) {
         super(itemView);
         orderID = itemView.findViewById(R.id.textView21);
         bookPic = itemView.findViewById(R.id.imageView4);
         date = itemView.findViewById(R.id.textView30);
        bookTitle = itemView.findViewById(R.id.textView24);
+       this.onOrderListner = onOrderListner;
+        itemView.setOnClickListener(this);
     }
 
     public void bind(Order order) {
@@ -40,5 +43,10 @@ public class OrderViewHolder  extends RecyclerView.ViewHolder{
         Glide.with(itemView.getContext())
                 .load(imageUri)
                 .into(bookPic);
+    }
+
+    @Override
+    public void onClick(View v) {
+        onOrderListner.onOrderClick(getBindingAdapterPosition(),v);
     }
 }

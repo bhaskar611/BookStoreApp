@@ -194,4 +194,13 @@ public class BookRepository {
             jsonParseException.printStackTrace();
         }
     }
+
+    public Book getBook(int bookId) {
+        for(Book book : getBookList()){
+            if(book.getBookID() == bookId){
+                return book;
+            }
+        }
+        return null;
+    }
 }

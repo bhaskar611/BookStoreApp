@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import com.example.bridgelabz.bookstore.R;
 import com.example.bridgelabz.bookstore.Repository.CartRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
+import com.example.bridgelabz.bookstore.adapter.OnOrderListner;
 import com.example.bridgelabz.bookstore.adapter.OrderAdapter;
 import com.example.bridgelabz.bookstore.model.CartModel;
 import com.example.bridgelabz.bookstore.model.Order;
@@ -33,6 +36,7 @@ import java.util.Objects;
 
 public class OrderFragment extends Fragment {
 
+    private static final String TAG = "OrderFragment";
     Order order;
     long orderID;
     CartRepository cartRepository;
@@ -42,6 +46,7 @@ public class OrderFragment extends Fragment {
     Date date;
     Calendar calendar;
     SharedPreference sharedPreference;
+    OrderViewFragment orderViewFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,7 +75,22 @@ public class OrderFragment extends Fragment {
         recyclerView = view.findViewById(R.id.order_RecyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-       orderAdapter = new OrderAdapter(orderList);
+       orderAdapter = new OrderAdapter(orderList, new OnOrderListner() {
+           @Override
+           public void onOrderClick(int position, View viewHolder) {
+             ArrayList<CartModel>  cartModelList = (ArrayList<CartModel>) getAllOrders().get(position).getCart_items();
+               Log.e(TAG, "onOrderClick: " + cartModelList );
+               orderViewFragment = new OrderViewFragment();
+               Bundle bundle = new Bundle();
+               bundle.putSerializable("list", cartModelList);
+              // bundle.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) cartModelList);
+               orderViewFragment.setArguments(bundle);
+               getParentFragmentManager().beginTransaction()
+                       .replace(R.id.fragment_container, orderViewFragment)
+                       .addToBackStack(null).commit();
+
+           }
+       });
         recyclerView.setAdapter(orderAdapter);
         orderAdapter.notifyDataSetChanged();
         onBackPressed(view);
