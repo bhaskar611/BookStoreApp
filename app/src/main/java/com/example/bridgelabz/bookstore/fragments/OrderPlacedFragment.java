@@ -117,8 +117,10 @@ public class OrderPlacedFragment extends Fragment {
 //        long orderID = Order_Placed_Fragment.orderNo;
         List<CartModel> cartList = cartRepository.getCartList();
         float price = cartRepository.calculateTotalPrice(cartList);
+        Bundle bundle = this.getArguments();
+        long deliveryAddressId = bundle.getLong("deliveryAddressId");
         order = new Order(orderNo,price
-                ,cartList,date);
+                ,cartList,date,deliveryAddressId);
         try {
             List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
                     "Users.json"), new TypeReference<List<User>>(){});

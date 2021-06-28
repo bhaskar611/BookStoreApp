@@ -9,12 +9,22 @@ public class Order {
     private float orderTotal;
     private List<CartModel> cart_items;
     private String orderDate;
+    private long deliveryAddressId;
 
-    public Order(long orderID, float orderTotal,List<CartModel> cart_items,String orderDate) {
+    public long getDeliveryAddressId() {
+        return deliveryAddressId;
+    }
+
+    public void setDeliveryAddressId(long deliveryAddressId) {
+        this.deliveryAddressId = deliveryAddressId;
+    }
+
+    public Order(long orderID, float orderTotal, List<CartModel> cart_items, String orderDate, long deliveryAddressId) {
         this.orderID = orderID;
         this.orderTotal = orderTotal;
         this.cart_items = cart_items;
        this.orderDate = orderDate;
+        this.deliveryAddressId = deliveryAddressId;
     }
 
     public Order(){

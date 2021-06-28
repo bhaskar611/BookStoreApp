@@ -55,6 +55,7 @@ public class BookListFragment extends Fragment {
     private BookRepository bookRepository;
     SharedPreference sharedPreference;
     DashBoardActivity dashBoardActivity;
+    PremieumUserFragment premieumUserFragment;
 
 
     @Nullable
@@ -83,8 +84,43 @@ public class BookListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         initRecyclerView();
         createReviewFile();
+        userAccessCount();
         return view;
     }
+    private void userAccessCount() {
+        int userAccess;
+        String jsonStr = null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
+                    "Users.json"), new TypeReference<List<User>>() {
+            });
+            userAccess = userList1.get(sharedPreference.getPresentUserId()).getUserAccessCount();
+            userAccess++;
+
+            if (userAccess < 6) {
+
+
+            }
+            else {
+                premieumUserFragment = new PremieumUserFragment();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, premieumUserFragment).addToBackStack(null).commit();
+            }
+            userList1.get(sharedPreference.getPresentUserId()).setUserAccessCount(userAccess);
+
+            jsonStr = mapper.writeValueAsString(userList1);
+
+            FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);
+            fos.write(jsonStr.getBytes());
+            fos.close();
+        } catch (IOException jsonParseException) {
+            jsonParseException.printStackTrace();
+        }
+    }
+
+
 
     private void createReviewFile() {
         String userName = null;

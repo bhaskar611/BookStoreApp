@@ -38,11 +38,18 @@ public class ReviewFragment extends Fragment {
     RatingBar ratingBar;
     Button submitReview;
     SharedPreference sharedPreference;
+    int BookId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_review, container, false);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+             BookId = getArguments().getInt("BookReviewID");
+        }
+//        assert getArguments() != null;
+
         userReviewDetails = view.findViewById(R.id.userReview);
         ratingBar = view.findViewById(R.id.user_Review_ratingBar);
         submitReview = view.findViewById(R.id.user_Review_Submit);
@@ -50,8 +57,6 @@ public class ReviewFragment extends Fragment {
         submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                assert getArguments() != null;
-                int BookId = getArguments().getInt("BookReviewID");
 
                 String userName = null;
                 String jsonStr = null;
@@ -91,12 +96,14 @@ public class ReviewFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Fragment fragment = new BookListFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                getParentFragmentManager().popBackStack();
+
+//                Fragment fragment = new BookListFragment();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
             }
         });
 

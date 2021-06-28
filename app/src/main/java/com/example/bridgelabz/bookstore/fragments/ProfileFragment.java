@@ -148,8 +148,6 @@ public class ProfileFragment extends Fragment {
         try {
             List<User> userList1 = mapper.readValue(new File(getContext().getFilesDir(),
                     "Users.json"), new TypeReference<List<User>>(){});
-//            List<Order> orderList = userList1.get(sharedPreference.getPresentUserId()).getOrderList();
-//            orderList.add(order);
             userList1.get(sharedPreference.getPresentUserId()).setUserImage(imageUri);
             String updatedFile = mapper.writeValueAsString(userList1);
             FileOutputStream fos = getContext().openFileOutput("Users.json", Context.MODE_PRIVATE);

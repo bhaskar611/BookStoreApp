@@ -10,6 +10,15 @@ public class User {
     private String email;
     private String password;
     private String userImage;
+    private int userAccessCount;
+
+    public int getUserAccessCount() {
+        return userAccessCount;
+    }
+
+    public void setUserAccessCount(int userAccessCount) {
+        this.userAccessCount = userAccessCount;
+    }
 
     public String getUserImage() {
         return userImage;
@@ -91,7 +100,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<CartResponseModel> cartItemList,List<Address> userAddress,List<Order> orderList,String userImage) {
+    public User(int userId,String email,String password,String userName,List<Integer> favouriteItemsList,List<CartResponseModel> cartItemList,List<Address> userAddress,List<Order> orderList,String userImage,int userAccessCount) {
         this.userID = userId;
         this.email = email;
         this.password = password;
@@ -101,6 +110,7 @@ public class User {
         this.userAddress = userAddress;
         this.orderList = orderList;
         this.userImage = userImage;
+        this.userAccessCount = userAccessCount;
     }
     public User(){
 

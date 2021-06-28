@@ -143,10 +143,11 @@ public class RegisterActivity extends AppCompatActivity {
                 List<CartResponseModel> cartItemsList = new ArrayList<>();
                 List<Address> addressList = new ArrayList<>();
                 List<Order> orderList = new ArrayList<>();
+                int userAccessCount = 0;
                 int userId = checkRegisters();
                 sharedPreference.setRegisteredUsersCount(userId);
                 sharedPreference.setPresentUserId(userId);
-                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList,orderList,userImage);
+                User user = new User(userId,email,password,name,favouriteItemsList,cartItemsList,addressList,orderList,userImage,userAccessCount);
                 userList.add(user);
                 if (file.exists()){
                ArrayList<User>  userList1 = mapper.readValue(new File(getFilesDir(), "Users.json"),new TypeReference<List<User>>(){} );

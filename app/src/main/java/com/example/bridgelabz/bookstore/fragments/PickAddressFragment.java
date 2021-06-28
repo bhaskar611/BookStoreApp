@@ -38,12 +38,14 @@ public class PickAddressFragment extends Fragment {
     int spanCount;
     private Address_Pick_Adapter address_pick_adapter;
     Button addAddress;
+    List<Address> addressList = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        List<Address> addressList = new ArrayList<>();
+
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // In landscape
@@ -52,6 +54,7 @@ public class PickAddressFragment extends Fragment {
             // In portrait
             spanCount = 1;
         }
+
         final RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         sharedPreference = new SharedPreference(this.getContext());
         View view = inflater.inflate(R.layout.fragment_pick__address_, container, false);
@@ -88,12 +91,19 @@ public class PickAddressFragment extends Fragment {
         address_pick_adapter = new Address_Pick_Adapter(addressList, new OnAddressListener() {
             @Override
             public void onAddressClick(int position, View viewHolder) {
-                Fragment fragment = new OrderPlacedFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+//                Fragment fragment = new OrderPlacedFragment();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+                long deliveryAddressId = addressList.get(position).getAddressID();
+                OrderPlacedFragment purchasedFragment = new OrderPlacedFragment();
+                Bundle bundle = new Bundle();
+                bundle.putLong("deliveryAddressId", deliveryAddressId);
+                purchasedFragment.setArguments(bundle);
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, purchasedFragment).addToBackStack(null).commit();
             }
         });
         recyclerView.setAdapter(address_pick_adapter);

@@ -2,6 +2,7 @@ package com.example.bridgelabz.bookstore.ui.dashBoard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +17,19 @@ import com.example.bridgelabz.bookstore.Repository.ReviewRepository;
 import com.example.bridgelabz.bookstore.SharedPreference;
 import com.example.bridgelabz.bookstore.fragments.CartFragment;
 import com.example.bridgelabz.bookstore.fragments.OrderFragment;
+import com.example.bridgelabz.bookstore.fragments.PremieumUserFragment;
 import com.example.bridgelabz.bookstore.fragments.ProfileFragment;
 import com.example.bridgelabz.bookstore.fragments.WishListFragment;
 import com.example.bridgelabz.bookstore.fragments.BookListFragment;
+import com.example.bridgelabz.bookstore.model.User;
 import com.example.bridgelabz.bookstore.ui.Authentication.LoginActivity;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
 
 public class DashBoardActivity extends AppCompatActivity implements AddBadge {
     SharedPreference sharedPreference;
@@ -34,6 +42,7 @@ public class DashBoardActivity extends AppCompatActivity implements AddBadge {
     TextView textCartItemCount;
     public static final String BACK_STACK_TAG_CART_FLOW = "cart_fragment_call";
     int badges;
+    PremieumUserFragment premieumUserFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +63,10 @@ public class DashBoardActivity extends AppCompatActivity implements AddBadge {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     booklistFragment).commit();
+
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,31 +94,6 @@ public class DashBoardActivity extends AppCompatActivity implements AddBadge {
                 onOptionsItemSelected(cartList);
             }
         });
-//        actionView1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onOptionsItemSelected(logout);
-//            }
-//        });
-//        actionView2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onOptionsItemSelected(wishList);
-//            }
-//        });
-//        actionView3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onOptionsItemSelected(orderList);
-//            }
-//        });
-//        actionView4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onOptionsItemSelected(profilePage);
-//            }
-//        });
-
 
         return true;
     }

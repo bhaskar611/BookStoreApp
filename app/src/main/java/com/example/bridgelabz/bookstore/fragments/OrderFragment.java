@@ -80,8 +80,15 @@ public class OrderFragment extends Fragment {
            public void onOrderClick(int position, View viewHolder) {
              ArrayList<CartModel>  cartModelList = (ArrayList<CartModel>) getAllOrders().get(position).getCart_items();
                Log.e(TAG, "onOrderClick: " + cartModelList );
+              String date = orderList.get(position).getOrderDate();
+              long orderID =  orderList.get(position).getOrderID();
+              float totalPrice = orderList.get(position).getOrderTotal();
+             //  cartModelList.get(position).getQuantites();
                orderViewFragment = new OrderViewFragment();
                Bundle bundle = new Bundle();
+               bundle.putString("date",date);
+               bundle.putLong("orderID",orderID);
+               bundle.putFloat("totalPrice",totalPrice);
                bundle.putSerializable("list", cartModelList);
               // bundle.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) cartModelList);
                orderViewFragment.setArguments(bundle);
